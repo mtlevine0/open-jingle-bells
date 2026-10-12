@@ -46,3 +46,5 @@ fp-info-cache
 
 ### Mac
 .DS_store
+# KiCad local history
+.history/
