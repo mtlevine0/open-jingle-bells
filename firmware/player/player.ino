@@ -31,9 +31,13 @@ typedef struct struct_message {
     uint16_t noteByte;
 } struct_message;
 
-// Bell names in ROM bit order (see transmitter/rom_player.py).
+// Bell names in ROM bit order (see bell_pinout.csv). Flats are accepted
+// as aliases for the two sharps.
 const char *NOTE_NAMES[12] = {
-  "E4", "D4", "C4", "E5", "Bb4", "B4", "C5", "D5", "A4", "G4", "F#4", "F4"
+  "E6", "D6", "C6", "E7", "A#6", "B6", "C7", "D7", "A6", "G6", "F#6", "F6"
+};
+const char *NOTE_ALIASES[12] = {
+  "", "", "", "", "Bb6", "", "", "", "", "", "Gb6", ""
 };
 
 QueueHandle_t strikeQueue;
@@ -82,7 +86,7 @@ void serviceStrikes() {
 
 int noteBit(const char *name) {
   for (int i = 0; i < 12; i++) {
-    if (strcasecmp(name, NOTE_NAMES[i]) == 0) {
+    if (strcasecmp(name, NOTE_NAMES[i]) == 0 || strcasecmp(name, NOTE_ALIASES[i]) == 0) {
       return i;
     }
   }

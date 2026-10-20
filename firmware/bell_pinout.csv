@@ -1,0 +1,13 @@
+bell,note,rom_bit,rom_mask,edge_pin,edge_side,sheet_pin,choir_gpio,player_gpio
+1,E7,3,0x008,7,bottom,9,18,18
+2,D7,7,0x080,6,top,15,8,17
+3,C7,6,0x040,4,top,14,46,15
+4,B6,5,0x020,3,bottom,11,9,7
+5,A#6,4,0x010,5,bottom,10,3,16
+6,A6,8,0x100,8,top,16,17,8
+7,G6,9,0x200,20,top,22,16,35
+8,F#6,10,0x400,22,top,23,7,37
+9,F6,11,0x800,24,top,24,5,39
+10,E6,0,0x001,23,bottom,1,4,38
+11,D6,1,0x002,21,bottom,2,6,36
+12,C6,2,0x004,19,bottom,3,15,48
