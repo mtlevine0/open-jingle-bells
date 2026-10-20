@@ -1,6 +1,6 @@
 # Merrie Minstrel Choir
 
-An ESP32-based replacement for the "Ye Merrie Minstrel Caroling Christmas Bells" original ROM cartridge featuring wireless synchronization.  A single transmitter device can broadcast notes to any number of receivers creating a choir of christmas bells.
+An ESP32-based replacement for the "Ye Merrie Minstrel Caroling Christmas Bells" original ROM cartridge featuring wireless synchronization.  A single transmitter device can broadcast notes to any number of players creating a choir of christmas bells.
 
 <p align="center">
   <img src="docs/assembled.JPG" alt="Assembled PCB" width="600">
@@ -18,7 +18,7 @@ I used [OSH Park](https://oshpark.com) to manufacture the PCBs.
 ├── firmware/
 │   ├── transmitter/    # Central controller that broadcasts note data
 │   ├── rom-dumper/     # Firmware for dumping ROM contents over a serial connection
-│   └── receiver/       # Firmware for individual bell units
+│   └── player/         # Firmware for individual bell units (ESP-NOW or USB serial)
 ├── hardware/
 │   └── merrie-minstrel-choir/  # KiCad PCB design files
 └── docs/
@@ -39,10 +39,10 @@ The custom PCB is designed in KiCad and interfaces with the original bell unit v
 ## Firmware
 
 ### Transmitter
-The transmitter reads note data from a ROM dump and broadcasts it to all receiver units using ESP-NOW protocol with long-range mode enabled.
+The transmitter reads note data from a ROM dump and broadcasts it to all player units using ESP-NOW protocol with long-range mode enabled.
 
-### Receiver
-Each bell unit runs the receiver firmware, which listens for note data and drives the 12-bit parallel data bus to control the bell's solenoids.
+### Player
+Each bell unit runs the player firmware, which takes note data over ESP-NOW or USB serial and drives the 12-bit parallel data bus to control the bell's solenoids.
 
 ### Rom Dumper
 The original ROM contains copyrighted material.  I don't have permission to share the contents.  You can acquire your own ROM cartridge and dump the ROM using the Arduino program provided.
