@@ -34,15 +34,25 @@ re-pinned to match, so every net still reaches the same finger on the bell card:
 
 No firmware change is needed, because the ESP32 GPIO for each bell is unchanged.
 
+J2 uses `card_edge_395024559212_noMH`, the rev 1 footprint without its two mounting
+holes. The socket's mounting ears hang off the board edge and the socket is held by its
+24 solder pins. Because the schematic symbol still has its MH1/MH2 pins (no-connect),
+the parity check warns that pins 25 and 26 have no pad.
+
 ### Smaller outline
 
-The board is 47–80.5 × 55–108 mm (33.5 × 53 mm), down from 35 × 55 mm, and stays
+The board is 53.7–80.5 × 55–108 mm (26.8 × 53 mm), down from 35 × 55 mm, and stays
 inside the rev 1 outline. What sets the limits:
 
-- left edge: J2 mounting-hole pads
-- top edge: the upper J2 mounting hole (the module antenna is flush with this edge)
+- left edge: 0.5 mm outside the copper of J2's outer pin row
+- top edge: the ESP32 module (its antenna is flush with this edge)
 - bottom edge: the USB-C connector, which stays where it was for the enclosure opening
 - right edge: the ESP32 module and USB-C
+
+### Smaller passives
+
+LEDs D2/D3 are now 0805 and all resistors (R1–R5) are 0603, both hand-solder variants.
+Capacitors stay 0805.
 
 ### Routing
 

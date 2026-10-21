@@ -6612,7 +6612,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 32.766 117.094 90)
 			(hide yes)
 			(show_name no)
@@ -7265,7 +7265,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 178.054 122.174 90)
 			(hide yes)
 			(show_name no)
@@ -7579,7 +7579,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 90.424 23.114 90)
 			(hide yes)
 			(show_name no)
@@ -8132,7 +8132,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "LED_SMD:LED_1206_3216Metric"
+		(property "Footprint" "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder"
 			(at 274.32 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -8386,7 +8386,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 275.336 35.814 90)
 			(hide yes)
 			(show_name no)
@@ -8465,7 +8465,7 @@
 				)
 			)
 		)
-		(property "Footprint" "LED_SMD:LED_1206_3216Metric"
+		(property "Footprint" "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder"
 			(at 189.23 123.19 0)
 			(hide yes)
 			(show_name no)
@@ -9546,7 +9546,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder"
 			(at 90.424 28.194 90)
 			(hide yes)
 			(show_name no)
@@ -9704,7 +9704,7 @@
 				)
 			)
 		)
-		(property "Footprint" "footprints:card_edge_395024559212"
+		(property "Footprint" "footprints:card_edge_395024559212_noMH"
 			(at 236.22 183.82 0)
 			(hide yes)
 			(show_name no)
