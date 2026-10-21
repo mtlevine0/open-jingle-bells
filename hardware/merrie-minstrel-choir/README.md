@@ -41,11 +41,11 @@ the parity check warns that pins 25 and 26 have no pad.
 
 ### Smaller outline
 
-The board is 53.7–80.5 × 55–108 mm (26.8 × 53 mm), down from 35 × 55 mm, and stays
+The board is 53.7–80.5 × 61–108 mm (26.8 × 47 mm), down from 35 × 55 mm, and stays
 inside the rev 1 outline. What sets the limits:
 
 - left edge: 0.5 mm outside the copper of J2's outer pin row
-- top edge: the ESP32 module (its antenna is flush with this edge)
+- top edge: the base of the module's antenna; the antenna hangs off the board
 - bottom edge: the USB-C connector, which stays where it was for the enclosure opening
 - right edge: the ESP32 module and USB-C
 
@@ -53,6 +53,15 @@ inside the rev 1 outline. What sets the limits:
 
 LEDs D2/D3 are now 0805 and all resistors (R1–R5) are 0603, both hand-solder variants.
 Capacitors stay 0805.
+
+### USB routing
+
+U4 (ESD) to U1 (IO19/IO20) runs as a coupled pair on B.Cu: 0.3 mm traces, 0.2 mm gap,
+about 24 mm long, 1.1 mm skew. Vias sit beside U1 pins 13/14 and between U4 and C9, and
+the B.Cu GND pour runs on both sides. Impedance isn't controlled (90 Ω needs much wider
+traces on 1.6 mm two-layer), which is fine at full speed. From J1 to U4 is about 3 mm.
+The receptacle interleaves D+/D−, so D− joins above the pads and D+ joins below them
+through one via.
 
 ### Routing
 
@@ -63,7 +72,11 @@ The board was re-routed with Freerouting using the scripts in `route/`:
 2. Export the DSN with `pcbnew.ExportSpecctraDSN`, then run `post_dsn.py`. This strips
    the planes, insets the boundary 0.5 mm, renames J1's hyphenated pins and sets
    0.25/0.45 mm net classes.
-3. Route with Freerouting, then `import_ses.py` imports the SES and fills the zones.
+   Before the export, `usb_pair.py` adds the hand-routed USB tracks (locked, so they go to
+   Freerouting as fixed wiring).
+3. Route with Freerouting. `import_ses.py` imports the SES, drops the zero-length stubs
+   Freerouting leaves on fixed nets, widens any track necked below 0.1524 mm, and fills
+   the zones.
 4. `gnd_cleanup_drc.py` removes redundant GND traces. It keeps a removal only when
    DRC shows no new unconnected items, starved thermals or connection-width warnings.
 

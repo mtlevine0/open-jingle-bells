@@ -12,7 +12,7 @@ BOARD, NETLIST = sys.argv[1], sys.argv[2]
 
 # New outline. The left edge sits 0.5 mm outside J2's outer pin row (the socket's mounting
 # ears hang off the board); the bottom edge stays put for the USB-C opening.
-X0, Y0, X1, Y1 = 53.7, 55.0, 80.5, 108.0
+X0, Y0, X1, Y1 = 53.7, 61.0, 80.5, 108.0  # top edge at the module's antenna line
 ANTENNA_KEEPOUT_Y = 61.0  # no pour above this (module antenna)
 KICAD_FP = '/usr/share/kicad/footprints'
 LED_0805 = ('LED_SMD', 'LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder')
@@ -95,11 +95,11 @@ j2.SetFPID(pcbnew.LIB_ID('footprints', 'card_edge_395024559212_noMH'))
 PLACE = {
     # ref: (x, y, rot)
     'U1': (70.8, 67.75, 0),
-    # EN pull-up and 3V3 decoupling in a row between the antenna keepout and J2's pins
-    'R1': (54.75, 63.3, 90),
-    'C7': (56.55, 63.3, 90),
-    'C8': (58.65, 63.3, 90),
-    # buttons and their caps keep their v1 spots; C3 (EN cap) joins C5 between them
+    # 3V3 decoupling between the top edge and J2's pins, C8 nearest U1 pin 2
+    'C7': (56.0, 63.3, 90),
+    'C8': (58.1, 63.3, 90),
+    # buttons and their caps keep their v1 spots; the EN RC (R1, C3) joins C5
+    'R1': (63.6, 86.9, 90),
     'C5': (65.5, 86.9, -90),
     'C3': (67.75, 86.9, -90),
     'C6': (70.0, 86.8, 90),
@@ -131,10 +131,10 @@ j3_delta = b.FindFootprintByReference('J3').GetPosition() - j3_old
 # reference/value text that the moves pushed onto pads or other silk
 FIELDS = {
     # (ref, field): (x, y, angle, size)
-    # silk is fine over the antenna keepout (it's copper that must stay out)
-    ('R1', 'Reference'): (54.75, 60.4, 0, 0.8),
-    ('C7', 'Reference'): (56.55, 60.4, 0, 0.8),
-    ('C8', 'Reference'): (58.65, 60.4, 0, 0.8),
+    ('C7', 'Reference'): (54.7, 63.3, 90, 0.8),
+    ('C8', 'Reference'): (59.9, 63.3, 90, 0.8),
+    ('R1', 'Reference'): (63.6, 84.4, 0, 0.8),
+    ('C5', 'Reference'): (65.5, 84.4, 0, 0.8),
     ('C3', 'Reference'): (67.75, 84.4, 0, 0.8),
     ('C6', 'Reference'): (70.0, 84.4, 0, 0.8),
     ('R5', 'Reference'): (77.6, 92.9, 0, 0.8),
