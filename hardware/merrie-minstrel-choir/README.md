@@ -10,7 +10,7 @@ On rev 1, R1 (10k) ran from EN to C3, and C3 went to GND. EN had no pull-up to +
 Rev 2 wires the standard Espressif RC:
 
 - R1 10k: +3.3V to EN
-- C3 1uF: EN to GND (C5 0.1uF stays in parallel with S2)
+- C3 1uF: EN to GND
 
 ### J2 moved to the bottom side
 
@@ -41,13 +41,35 @@ the parity check warns that pins 25 and 26 have no pad.
 
 ### Smaller outline
 
-The board is 53.7–80.5 × 61–108 mm (26.8 × 47 mm), down from 35 × 55 mm, and stays
-inside the rev 1 outline. What sets the limits:
+The board is 53.7–80.5 × 61–98 mm (26.8 × 37 mm), down from 35 × 55 mm in rev 1 and
+26.8 × 47 mm in the first rev 2 layout. What sets the limits:
 
 - left edge: 0.5 mm outside the copper of J2's outer pin row
 - top edge: the base of the module's antenna; the antenna hangs off the board
-- bottom edge: the USB-C connector, which stays where it was for the enclosure opening
+- bottom edge: J2's lowest pins (y 94.55) and the stack of rows under U1. **J1 moved up
+  10 mm with it, so the enclosure's USB-C opening has to move too.**
 - right edge: the ESP32 module and USB-C
+
+### Placement: R and C on the back
+
+Every resistor and capacitor is on the back, behind the part it serves. The back can't
+use x < 60.7 mm, because J2's socket body covers that strip.
+
+| Back side | Behind |
+|-----------|--------|
+| C7, C8 (3V3 decoupling), R1, C3 (EN RC) | U1's 3V3 and EN pins, under the module |
+| R2, R5 | their LEDs D2, D3 |
+| R6 (GPIO0 pull-up) | S1 (BOOT) |
+| C9 (VBUS) | U4 |
+| R3, R4 (CC pull-downs) | J1 |
+| C1, C2 (LDO in/out) | U2 |
+
+The top side has three rows under U1:
+- row A: D2, D3 and J3, with J3 now horizontal along the module's bottom edge
+- row B: S2, S1 and U4
+- row C, on the bottom edge: U2 and J1
+
+The UART pin labels on the back sit just above J3's pins.
 
 ### Smaller passives
 
@@ -56,12 +78,17 @@ Capacitors stay 0805.
 
 ### USB routing
 
-U4 (ESD) to U1 (IO19/IO20) runs as a coupled pair on B.Cu: 0.3 mm traces, 0.2 mm gap,
-about 24 mm long, 1.1 mm skew. Vias sit beside U1 pins 13/14 and between U4 and C9, and
-the B.Cu GND pour runs on both sides. Impedance isn't controlled (90 Ω needs much wider
-traces on 1.6 mm two-layer), which is fine at full speed. From J1 to U4 is about 3 mm.
-The receptacle interleaves D+/D−, so D− joins above the pads and D+ joins below them
-through one via.
+The J1/U4/C9 corner is hand-routed and locked (`route/usb_v3.py`):
+- D− (4 mm, no vias) joins B7/A7 on a bar above the pads and runs straight up to U4 pin 3.
+- D+ (12 mm, 2 vias) joins A6/B6 on a bar below the pads. It drops to B.Cu, runs up
+  between C9's pads and comes back to F.Cu above U4 to reach pin 1.
+- A via beside U4 pin 2 ties it to C9's GND pad on the back.
+- J1's left VBUS pin gets its own via.
+
+Freerouting routed U4 to U1 (IO19/IO20): USB_D+ is 29.6 mm and USB_D− 31.0 mm, with
+4 vias each and 1.4 mm skew. They aren't a coupled pair any more. That's fine at USB full
+speed (12 Mb/s), where the skew is far below a bit time and impedance isn't controlled
+anyway.
 
 ### Routing
 
@@ -82,9 +109,49 @@ The board was re-routed with Freerouting using the scripts in `route/`:
 
 The routed job (`route/choir-v2.dsn`, `.ses`) is kept locally; the repo ignores `*.dsn` and `*.ses`.
 
+The shrunk layout replaced step 1 and the USB step:
+
+1. `v3_layout.py` strips the routing, places parts top and back, and moves the outline and
+   pours to y = 98. Run it with the project's `.kicad_pro` next to the input board, or
+   pcbnew loads default design rules and saves them over the project's.
+2. `usb_v3.py` adds the locked J1/U4/C9 routing (see above).
+3. DSN export, `post_dsn.py`, Freerouting, `import_ses.py` and `gnd_cleanup_drc.py` as
+   before. Cleanup removed 77 of 83 GND segments.
+4. `silk_v3.py` moves each reference label to the nearest spot clear of pads and other
+   silkscreen, at the board's minimum text size (0.8 mm).
+
+Remaining DRC items, all from before this layout apart from the last one:
+- U1's 0.2 mm via drills
+- U1's silkscreen at the antenna edge
+- library-mismatch notes
+- the U1/J2 parity notes
+- one starved-thermal warning: R4's GND pad has a single spoke into the back pour
+
+With clearance re-enabled, the only clearance hits are the 11 inside J1's own pads.
+
+### Schematic cleanup
+
+- R2/R5 are 1.5k so the LEDs glow dimly for debugging: about 1 mA for red/yellow,
+  about 0.4 mA for blue/white/green.
+- R6 (10k, 0603) pulls GPIO0 up to +3.3V. S1 stays: it selects download mode at reset
+  for flashing over J3, and works as a user button (active low) after boot. Firmware
+  debounces it.
+- C5 and C6, the caps across the buttons, are gone. C5 was in parallel with C3, and C3
+  with R1 already filters EN.
+- S1/S2 are XUNPU TS-1088-AR02016 (3.9 × 3 × 2 mm SMD tactile, LCSC C720477) on KiCad's
+  `Button_Switch_SMD:SW_SPST_TS-1088-xR020`, the same switch the IV-9 numitron clock
+  uses. The symbol is still named `1825966-1`.
+- A note on the sheet says the IO35 LED needs a module without octal PSRAM (N8). N8R8 and
+  N16R8 use IO35–IO37 for PSRAM.
+- ERC is clean (0 errors, 0 warnings). U1's GND pins are `power_in` and J1's are `passive`
+  in the vendor libraries, and PWR_FLAGs mark VCC and GND. Two wire stubs on the
+  USB_D± labels were trimmed. The Bell_9 label moved off J2's GND symbol.
+- The project now has its own `sym-lib-table` and `fp-lib-table`. `footprints.pretty`
+  holds J1, U2 and J2 as placed on the board, exported from the PCB. The J2 symbol was
+  rebuilt into `../vendor/edac_395-024-559-212/` with the same pin positions.
+
 ### Known items carried over from rev 1
 
 - U1's footprint has 0.2 mm thermal-via drills, below the 0.254 mm minimum in board setup
   (12 DRC errors in both revisions).
-- R2/R5 are 68 Ω in the schematic but 220 Ω on the PCB.
 - The 3D model paths for J1, J2 and U2 point at a macOS path, so they don't render here.
