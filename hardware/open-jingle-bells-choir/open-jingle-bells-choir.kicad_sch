@@ -6186,7 +6186,7 @@
 			(uuid "c205a858-17d1-40b3-acc0-31c9b892dde5")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR024")
 					(unit 1)
@@ -6270,7 +6270,7 @@
 			(uuid "6ae0ae0a-6c78-40ad-9a17-f6cc5a2c7765")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "U2")
 					(unit 1)
@@ -6369,7 +6369,7 @@
 			(uuid "010fa1d7-207e-4bcc-9cb0-49116d808492")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "S1")
 					(unit 1)
@@ -6447,7 +6447,7 @@
 			(uuid "fbb11e89-b357-45f1-bf7a-4093052842f9")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR025")
 					(unit 1)
@@ -6529,7 +6529,7 @@
 			(uuid "a035f071-aab9-4631-ad48-f5e5d8125631")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "R1")
 					(unit 1)
@@ -6607,7 +6607,7 @@
 			(uuid "fbed2af8-43de-4176-970c-7f80ff5f2add")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR020")
 					(unit 1)
@@ -6685,7 +6685,7 @@
 			(uuid "6999edeb-05db-4a61-915a-c3c76a97049c")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR09")
 					(unit 1)
@@ -6782,7 +6782,7 @@
 			(uuid "9586b809-ac50-4775-b6a9-69c4843b9a75")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "U4")
 					(unit 1)
@@ -6863,7 +6863,7 @@
 			(uuid "a21cb959-704e-441f-9f30-de8d8208e6c1")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "C8")
 					(unit 1)
@@ -6942,7 +6942,7 @@
 			(uuid "e437a01f-76bd-47c1-b266-a138071d51e5")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR017")
 					(unit 1)
@@ -7024,7 +7024,7 @@
 			(uuid "450c4bb8-9509-45a9-bf3e-238564ec6867")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "C2")
 					(unit 1)
@@ -7102,7 +7102,7 @@
 			(uuid "f88565ec-2669-4518-b803-77eba304a62f")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR011")
 					(unit 1)
@@ -7182,7 +7182,7 @@
 			(uuid "f4c68597-df81-40ac-a846-d1db9d1c24fd")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "R5")
 					(unit 1)
@@ -7260,7 +7260,7 @@
 			(uuid "439b0a40-e052-4f49-8b70-a764d967a4be")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR01")
 					(unit 1)
@@ -7338,7 +7338,7 @@
 			(uuid "9ddedc43-e453-4b8f-b174-ff8a09614745")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR02")
 					(unit 1)
@@ -7416,7 +7416,7 @@
 			(uuid "21873e92-6803-4da2-8176-8a6b3a153511")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR08")
 					(unit 1)
@@ -7496,7 +7496,7 @@
 			(uuid "a2be10f2-df18-4df0-af05-e44a13bfa071")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "R3")
 					(unit 1)
@@ -7575,7 +7575,7 @@
 			(uuid "363f77ca-f922-46cd-8f11-e233a9ffe923")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR030")
 					(unit 1)
@@ -7653,7 +7653,7 @@
 			(uuid "f0b98900-5298-449b-969c-df57575ed09a")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR022")
 					(unit 1)
@@ -7732,7 +7732,7 @@
 			(uuid "ac9cbc55-17c5-434b-aa9a-312912514ef7")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR019")
 					(unit 1)
@@ -7810,7 +7810,7 @@
 			(uuid "3de7cee5-277d-4427-8752-be1f2eb1dc8b")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR04")
 					(unit 1)
@@ -7888,7 +7888,7 @@
 			(uuid "bfd68a37-5118-4c36-b67f-b62f49707881")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR03")
 					(unit 1)
@@ -7967,7 +7967,7 @@
 			(uuid "8e56c5f1-9f67-4fd0-ab70-1fa84760f205")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR06")
 					(unit 1)
@@ -8060,7 +8060,7 @@
 			(uuid "2fd49fed-5b3f-495e-980f-3583aa8e7fce")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "D2")
 					(unit 1)
@@ -8142,7 +8142,7 @@
 			(uuid "aa2965a8-d777-4633-9d81-c80fcdd5fa67")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "C9")
 					(unit 1)
@@ -8221,7 +8221,7 @@
 			(uuid "8ff57156-6d6c-4045-b019-773f04146be0")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR018")
 					(unit 1)
@@ -8303,7 +8303,7 @@
 			(uuid "bcf3cbaa-6ef8-4d53-81f2-a5a372429e3f")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "R2")
 					(unit 1)
@@ -8393,7 +8393,7 @@
 			(uuid "48c36cdf-46aa-4b13-a44f-689d63ef3bed")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "D3")
 					(unit 1)
@@ -8504,7 +8504,7 @@
 			(uuid "5dab3f04-bedd-420a-a0c6-3f7a265d1467")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "J1")
 					(unit 1)
@@ -8582,7 +8582,7 @@
 			(uuid "6965ba31-711c-4bf6-9683-55cf1fed0207")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR023")
 					(unit 1)
@@ -8660,7 +8660,7 @@
 			(uuid "abab02af-206c-47e0-ab10-a231affa613f")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR07")
 					(unit 1)
@@ -8738,7 +8738,7 @@
 			(uuid "a53399f7-f53e-4a0a-87d1-31939569acae")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR012")
 					(unit 1)
@@ -8816,7 +8816,7 @@
 			(uuid "a3dede4f-38be-44ff-ad84-2dd8ce201d05")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR010")
 					(unit 1)
@@ -8904,7 +8904,7 @@
 			(uuid "537f37a5-d6be-4114-8224-ac335a0b34f4")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "J3")
 					(unit 1)
@@ -8986,7 +8986,7 @@
 			(uuid "d9a40412-7e42-4822-a7db-d23852f3e929")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "C3")
 					(unit 1)
@@ -9064,7 +9064,7 @@
 			(uuid "bda52d78-d2d2-49f8-a9fd-6e22cb670b00")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR013")
 					(unit 1)
@@ -9145,7 +9145,7 @@
 			(uuid "ec87587b-bf20-40be-ab2e-c55a73b8069a")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "C7")
 					(unit 1)
@@ -9227,7 +9227,7 @@
 			(uuid "0646672b-8c4a-41fa-ab07-fb8e41636e66")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "C1")
 					(unit 1)
@@ -9305,7 +9305,7 @@
 			(uuid "0d72d671-8db2-4c94-a8a3-83c2c61b008d")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR021")
 					(unit 1)
@@ -9384,7 +9384,7 @@
 			(uuid "4c51a1d9-1d25-4284-ab28-358941f603e2")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "R4")
 					(unit 1)
@@ -9462,7 +9462,7 @@
 			(uuid "0381b334-9569-4c82-aaed-2878bb8a4588")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR026")
 					(unit 1)
@@ -9676,7 +9676,7 @@
 			(uuid "38bcc517-ea3f-44eb-ac86-d0281de9764d")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "J2")
 					(unit 1)
@@ -9899,7 +9899,7 @@
 			(uuid "cf5efa90-c03a-41a9-8004-31d6cd661883")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "U1")
 					(unit 1)
@@ -9977,7 +9977,7 @@
 			(uuid "131b6d41-b3b6-411f-a2f1-764fecdf29b2")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR05")
 					(unit 1)
@@ -10076,7 +10076,7 @@
 			(uuid "a32488db-a806-46c5-9697-cd2109a77bf0")
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "S2")
 					(unit 1)
@@ -10137,7 +10137,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR014")
 					(unit 1)
@@ -10198,7 +10198,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR015")
 					(unit 1)
@@ -10259,7 +10259,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR016")
 					(unit 1)
@@ -10319,7 +10319,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "R6")
 					(unit 1)
@@ -10380,7 +10380,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#PWR027")
 					(unit 1)
@@ -10441,7 +10441,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#FLG01")
 					(unit 1)
@@ -10502,7 +10502,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-choir"
+			(project "open-jingle-bells-choir"
 				(path "/d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
 					(reference "#FLG02")
 					(unit 1)

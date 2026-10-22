@@ -9,7 +9,7 @@ String configDefaultName() {
   uint8_t mac[6];
   esp_read_mac(mac, ESP_MAC_WIFI_STA);
   char name[20];
-  snprintf(name, sizeof(name), "minstrel-%02x%02x", mac[4], mac[5]);
+  snprintf(name, sizeof(name), "jinglebells-%02x%02x", mac[4], mac[5]);
   return name;
 }
 

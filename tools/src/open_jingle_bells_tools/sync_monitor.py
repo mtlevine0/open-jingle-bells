@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Watch minstrel group sync on the LAN.
+"""Watch the bell units' group sync on the LAN.
 
 Listens on the sync port (UDP 47800) and decodes the HELLO and STATE
 broadcasts that units send (layouts in firmware/sync.cpp). TIME
@@ -9,9 +9,9 @@ With --time IP it sends TIME requests to that unit, as a unit would, and
 prints the round trip. Only the clock master answers. Run one mode at a time:
 both bind the sync port.
 
-    minstrel-sync-monitor
-    minstrel-sync-monitor --group 2 --summary
-    minstrel-sync-monitor --time 192.168.1.42
+    ojb-sync-monitor
+    ojb-sync-monitor --group 2 --summary
+    ojb-sync-monitor --time 192.168.1.42
 """
 
 import argparse

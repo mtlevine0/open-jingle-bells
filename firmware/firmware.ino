@@ -1,11 +1,11 @@
-// Minstrel: bell unit firmware with a compiled-in song library, Wi-Fi setup,
-// a control page and group sync over UDP. See docs/minstrel-firmware-plan.md.
+// Open Jingle Bells: bell unit firmware with a compiled-in song library, Wi-Fi setup,
+// a control page and group sync over UDP. See docs/firmware-plan.md.
 //
 // Build and flash in one step (a bare "upload" flashes whatever was compiled
 // last, which may be the other board's build):
 //   arduino-cli compile -u -p /dev/ttyACM0 -b esp32:esp32:esp32s3:CDCOnBoot=cdc,FlashSize=8M,PartitionScheme=default_8MB
 // Add --build-property compiler.cpp.extra_flags=-DPLAYER_BOARD for the
-// merrie-minstrel-player board. The boot banner and "status" name the board.
+// open-jingle-bells-player board. The boot banner and "status" name the board.
 
 #include "bells.h"
 #include "board.h"
@@ -76,7 +76,7 @@ void setup() {
   syncBegin();
   webBegin();
 
-  Serial.printf("minstrel %s ready on %s; type 'help'\n", config.name.c_str(), BOARD_NAME);
+  Serial.printf("open-jingle-bells %s ready on %s; type 'help'\n", config.name.c_str(), BOARD_NAME);
 }
 
 void loop() {

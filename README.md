@@ -1,4 +1,4 @@
-# Merrie Minstrel Choir
+# Open Jingle Bells
 
 An ESP32-based replacement for the "Ye Merrie Minstrel Caroling Christmas Bells" original ROM cartridge featuring wireless synchronization.  Every unit carries the same song library, and any number of units on the same Wi-Fi network play in unison, creating a choir of christmas bells.
 
@@ -18,7 +18,8 @@ I used [OSH Park](https://oshpark.com) to manufacture the PCBs.
 ├── firmware/           # Bell-unit firmware (Arduino sketch): Wi-Fi control page, songs, UDP group sync
 │   └── rom-dumper/     # Firmware for dumping ROM contents over a serial connection
 ├── hardware/
-│   └── merrie-minstrel-choir/  # KiCad PCB design files
+│   ├── open-jingle-bells-choir/   # KiCad project: bell-unit board (built)
+│   └── open-jingle-bells-player/  # KiCad project: player board (not yet built)
 ├── tools/              # Python package: song library (roms/), new songs (songs/), song and bell tools, sync monitor
 └── docs/
 ```
@@ -37,8 +38,8 @@ The custom PCB is designed in KiCad and interfaces with the original bell unit v
 
 ## Firmware
 
-### Minstrel
-Each bell unit runs the minstrel firmware. It plays its compiled-in song library by driving the 12-bit parallel data bus to the bell's solenoids. A phone sets it up and controls it through a web page, and units on the same network keep a shared clock over UDP so they play together. It also takes strikes over USB serial, for developing songs. See `firmware/README.md`.
+### Bell unit
+Each bell unit runs the Open Jingle Bells firmware. It plays its compiled-in song library by driving the 12-bit parallel data bus to the bell's solenoids. A phone sets it up and controls it through a web page, and units on the same network keep a shared clock over UDP so they play together. It also takes strikes over USB serial, for developing songs. See `firmware/README.md`.
 
 ### Rom Dumper
 The original ROM contains copyrighted material.  I don't have permission to share the contents.  You can acquire your own ROM cartridge and dump the ROM using the Arduino program provided.

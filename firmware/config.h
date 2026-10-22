@@ -1,7 +1,8 @@
 #pragma once
 #include <Arduino.h>
 
-// Settings kept in NVS (Preferences namespace "minstrel").
+// Settings kept in NVS (Preferences namespace "minstrel", the firmware's old
+// name; kept so flashed units keep their settings).
 struct Config {
   String name;          // mDNS host name and the name shown on the page
   String ssid;          // empty: not configured, run the setup AP

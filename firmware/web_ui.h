@@ -7,7 +7,7 @@ static const char INDEX_HTML[] PROGMEM = R"HTML(<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Minstrel</title>
+<title>Open Jingle Bells</title>
 <style>
 :root{--bg:#f6f4ef;--card:#fff;--ink:#1d1b18;--muted:#6f6a61;--line:#e4e0d6;--accent:#b3261e;--accent-ink:#fff;--ok:#2e7d32;--warn:#b26a00}
 @media (prefers-color-scheme:dark){:root{--bg:#161513;--card:#22201d;--ink:#eeeae2;--muted:#a49e93;--line:#37342f;--accent:#e2574c;--accent-ink:#fff;--ok:#7cc47f;--warn:#e0a24a}}
@@ -63,7 +63,7 @@ li.net span:last-child{color:var(--muted);font-size:13px}
 </style>
 </head>
 <body>
-<header><h1 id="name">Minstrel</h1><span class="pill" id="conn">…</span></header>
+<header><h1 id="name">Open Jingle Bells</h1><span class="pill" id="conn">…</span></header>
 <nav>
 <button data-tab="play" class="on">Play</button><button data-tab="bells">Bells</button><button data-tab="health">Health</button><button data-tab="setup">Setup</button>
 </nav>
@@ -213,7 +213,7 @@ $("#join").onclick=async()=>{
 $("#forget").onclick=async()=>{
   if(!confirm("Forget the Wi-Fi network? The unit goes back to setup mode."))return;
   const r=await api("/api/wifi/forget",{});
-  if(r&&r.ok)toast("Forgotten. Join the "+(st?st.wifi.ap_ssid:"Minstrel")+" network to set it up again.");
+  if(r&&r.ok)toast("Forgotten. Join the "+(st?st.wifi.ap_ssid:"JingleBells")+" network to set it up again.");
 };
 $("#rescan").onclick=()=>{$("#nets").innerHTML='<li class="note">Scanning…</li>';scan()};
 $("#save").onclick=async()=>{

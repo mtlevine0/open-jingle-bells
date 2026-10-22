@@ -8202,7 +8202,7 @@
 		)
 		(uuid "7367c102-78b2-465d-9321-ce545a78082f")
 	)
-  (text "J2 MUSIC MODULE INTERFACE - 24-pad 0.100in dual-sided gold-finger card edge (module carries the socket)\nPin numbers follow the bell-unit edge mated by EDAC 395-024-559-212 on merrie-minstrel-choir J2.\nOdd pins on one face, even pins on the other: confirm face and pin-1 orientation against a real module before layout.\nModule outputs bell data on 3,5,7,19,21,23 (BELL1-6) and 4,6,8,20,22,24 (BELL7-12).  Pin 9 = GND, pin 10 = module VCC (5V).\nPins 1,2,11-18: function unknown - each goes through TXS0108E to an ESP32 GPIO; DNP 0603 bypass R9-R18 across each.\nTranslator channels/GPIOs are assigned by board geometry (U5 = fingers 1-8, U6 = 11-18, U7 = 19-24).\n\nGPIO MAP  BELL1 IO7  BELL2 IO16  BELL3 IO18  BELL4 IO48  BELL5 IO36  BELL6 IO38  BELL7 IO15  BELL8 IO17  BELL9 IO8\n          BELL10 IO35  BELL11 IO37  BELL12 IO39   P1 IO5  P2 IO6  P11 IO9  P12 IO10  P13 IO11  P14 IO12  P15 IO13\n          P16 IO14  P17 IO21  P18 IO47   LVL_OE IO4  MOD_PWR_EN IO40  LED IO41  PLAY IO42  BOOT IO0  (N8 only: IO35-37 used)\n\nBOOT-SAFE DEFAULTS\n- LVL_OE pulled low by R6: translators are high-Z until firmware enables them.\n- MOD_PWR_EN pulled low by R8: module power (Q1 high-side switch) is off until firmware enables it.\n  Firmware sequence: drive LVL_OE low -> enable MOD_5V -> wait -> drive LVL_OE high.\n- Strapping pins IO0/IO3/IO45/IO46 are kept off the translator lines. IO1/IO2 are spare.\n- TXS0108E VCCB is on unswitched +5V so VCCA (3V3) is never above VCCB."
+  (text "J2 MUSIC MODULE INTERFACE - 24-pad 0.100in dual-sided gold-finger card edge (module carries the socket)\nPin numbers follow the bell-unit edge mated by EDAC 395-024-559-212 on open-jingle-bells-choir J2.\nOdd pins on one face, even pins on the other: confirm face and pin-1 orientation against a real module before layout.\nModule outputs bell data on 3,5,7,19,21,23 (BELL1-6) and 4,6,8,20,22,24 (BELL7-12).  Pin 9 = GND, pin 10 = module VCC (5V).\nPins 1,2,11-18: function unknown - each goes through TXS0108E to an ESP32 GPIO; DNP 0603 bypass R9-R18 across each.\nTranslator channels/GPIOs are assigned by board geometry (U5 = fingers 1-8, U6 = 11-18, U7 = 19-24).\n\nGPIO MAP  BELL1 IO7  BELL2 IO16  BELL3 IO18  BELL4 IO48  BELL5 IO36  BELL6 IO38  BELL7 IO15  BELL8 IO17  BELL9 IO8\n          BELL10 IO35  BELL11 IO37  BELL12 IO39   P1 IO5  P2 IO6  P11 IO9  P12 IO10  P13 IO11  P14 IO12  P15 IO13\n          P16 IO14  P17 IO21  P18 IO47   LVL_OE IO4  MOD_PWR_EN IO40  LED IO41  PLAY IO42  BOOT IO0  (N8 only: IO35-37 used)\n\nBOOT-SAFE DEFAULTS\n- LVL_OE pulled low by R6: translators are high-Z until firmware enables them.\n- MOD_PWR_EN pulled low by R8: module power (Q1 high-side switch) is off until firmware enables it.\n  Firmware sequence: drive LVL_OE low -> enable MOD_5V -> wait -> drive LVL_OE high.\n- Strapping pins IO0/IO3/IO45/IO46 are kept off the translator lines. IO1/IO2 are spare.\n- TXS0108E VCCB is on unswitched +5V so VCCA (3V3) is never above VCCB."
     (at 152.4 289.56 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid "e0f2bf57-bb43-49bb-b317-36270a62d171")
@@ -8259,7 +8259,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "J1")
 					(unit 1)
@@ -8321,7 +8321,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "U4")
 					(unit 1)
@@ -8381,7 +8381,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "R3")
 					(unit 1)
@@ -8441,7 +8441,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "R4")
 					(unit 1)
@@ -8502,7 +8502,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "U2")
 					(unit 1)
@@ -8564,7 +8564,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "C1")
 					(unit 1)
@@ -8626,7 +8626,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "C9")
 					(unit 1)
@@ -8688,7 +8688,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "C2")
 					(unit 1)
@@ -8750,7 +8750,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "C7")
 					(unit 1)
@@ -8812,7 +8812,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "C8")
 					(unit 1)
@@ -8872,7 +8872,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "R2")
 					(unit 1)
@@ -8932,7 +8932,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "D2")
 					(unit 1)
@@ -8994,7 +8994,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "Q1")
 					(unit 1)
@@ -9056,7 +9056,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "Q2")
 					(unit 1)
@@ -9116,7 +9116,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "R7")
 					(unit 1)
@@ -9176,7 +9176,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "R8")
 					(unit 1)
@@ -9238,7 +9238,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "C10")
 					(unit 1)
@@ -9300,7 +9300,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "C11")
 					(unit 1)
@@ -9360,7 +9360,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "U1")
 					(unit 1)
@@ -9420,7 +9420,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "R1")
 					(unit 1)
@@ -9482,7 +9482,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "C3")
 					(unit 1)
@@ -9543,7 +9543,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "S2")
 					(unit 1)
@@ -9604,7 +9604,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "S1")
 					(unit 1)
@@ -9666,7 +9666,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "C6")
 					(unit 1)
@@ -9727,7 +9727,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "S3")
 					(unit 1)
@@ -9789,7 +9789,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "C12")
 					(unit 1)
@@ -9849,7 +9849,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "R5")
 					(unit 1)
@@ -9909,7 +9909,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "D3")
 					(unit 1)
@@ -9969,7 +9969,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "J3")
 					(unit 1)
@@ -10030,7 +10030,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "U5")
 					(unit 1)
@@ -10091,7 +10091,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "U6")
 					(unit 1)
@@ -10152,7 +10152,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "U7")
 					(unit 1)
@@ -10214,7 +10214,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "C13")
 					(unit 1)
@@ -10276,7 +10276,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "C14")
 					(unit 1)
@@ -10338,7 +10338,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "C15")
 					(unit 1)
@@ -10400,7 +10400,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "C16")
 					(unit 1)
@@ -10462,7 +10462,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "C17")
 					(unit 1)
@@ -10524,7 +10524,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "C18")
 					(unit 1)
@@ -10584,7 +10584,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "R6")
 					(unit 1)
@@ -10644,7 +10644,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "J2")
 					(unit 1)
@@ -10705,7 +10705,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR001")
 					(unit 1)
@@ -10766,7 +10766,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR002")
 					(unit 1)
@@ -10827,7 +10827,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR003")
 					(unit 1)
@@ -10888,7 +10888,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR004")
 					(unit 1)
@@ -10949,7 +10949,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR005")
 					(unit 1)
@@ -11010,7 +11010,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR006")
 					(unit 1)
@@ -11071,7 +11071,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR007")
 					(unit 1)
@@ -11132,7 +11132,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR008")
 					(unit 1)
@@ -11193,7 +11193,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR009")
 					(unit 1)
@@ -11254,7 +11254,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR010")
 					(unit 1)
@@ -11315,7 +11315,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR011")
 					(unit 1)
@@ -11376,7 +11376,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR012")
 					(unit 1)
@@ -11437,7 +11437,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR013")
 					(unit 1)
@@ -11498,7 +11498,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR014")
 					(unit 1)
@@ -11559,7 +11559,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR015")
 					(unit 1)
@@ -11620,7 +11620,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR016")
 					(unit 1)
@@ -11681,7 +11681,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR017")
 					(unit 1)
@@ -11742,7 +11742,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR018")
 					(unit 1)
@@ -11803,7 +11803,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR019")
 					(unit 1)
@@ -11864,7 +11864,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR020")
 					(unit 1)
@@ -11925,7 +11925,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR021")
 					(unit 1)
@@ -11986,7 +11986,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR022")
 					(unit 1)
@@ -12047,7 +12047,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR023")
 					(unit 1)
@@ -12108,7 +12108,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR024")
 					(unit 1)
@@ -12169,7 +12169,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR025")
 					(unit 1)
@@ -12230,7 +12230,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR026")
 					(unit 1)
@@ -12291,7 +12291,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR027")
 					(unit 1)
@@ -12352,7 +12352,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR028")
 					(unit 1)
@@ -12413,7 +12413,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR029")
 					(unit 1)
@@ -12474,7 +12474,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR030")
 					(unit 1)
@@ -12535,7 +12535,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR031")
 					(unit 1)
@@ -12596,7 +12596,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR032")
 					(unit 1)
@@ -12657,7 +12657,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR033")
 					(unit 1)
@@ -12718,7 +12718,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR034")
 					(unit 1)
@@ -12779,7 +12779,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR036")
 					(unit 1)
@@ -12840,7 +12840,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR037")
 					(unit 1)
@@ -12901,7 +12901,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR038")
 					(unit 1)
@@ -12962,7 +12962,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR039")
 					(unit 1)
@@ -13023,7 +13023,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR040")
 					(unit 1)
@@ -13084,7 +13084,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR041")
 					(unit 1)
@@ -13145,7 +13145,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR042")
 					(unit 1)
@@ -13206,7 +13206,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR043")
 					(unit 1)
@@ -13267,7 +13267,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR044")
 					(unit 1)
@@ -13328,7 +13328,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR045")
 					(unit 1)
@@ -13389,7 +13389,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR046")
 					(unit 1)
@@ -13450,7 +13450,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR047")
 					(unit 1)
@@ -13511,7 +13511,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR048")
 					(unit 1)
@@ -13572,7 +13572,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR049")
 					(unit 1)
@@ -13633,7 +13633,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#FLG01")
 					(unit 1)
@@ -13694,7 +13694,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "#PWR035")
 					(unit 1)
@@ -13754,7 +13754,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "R9")
 					(unit 1)
@@ -13814,7 +13814,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "R10")
 					(unit 1)
@@ -13874,7 +13874,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "R11")
 					(unit 1)
@@ -13934,7 +13934,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "R12")
 					(unit 1)
@@ -13994,7 +13994,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "R13")
 					(unit 1)
@@ -14054,7 +14054,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "R14")
 					(unit 1)
@@ -14114,7 +14114,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "R15")
 					(unit 1)
@@ -14174,7 +14174,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "R16")
 					(unit 1)
@@ -14234,7 +14234,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "R17")
 					(unit 1)
@@ -14294,7 +14294,7 @@
 			)
 		)
 		(instances
-			(project "merrie-minstrel-player"
+			(project "open-jingle-bells-player"
 				(path "/b4d1d7f9-ca6d-4f7e-a78f-0f8d4f0b9700"
 					(reference "R18")
 					(unit 1)

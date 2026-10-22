@@ -12,7 +12,7 @@ Each song keeps the silence that follows it on the ROM, so looping it keeps
 the original spacing. Writes <out>/<module>_<pos>_<title>_rom.h per song and
 <out>/roms.csv indexing them.
 
-Usage (from tools/): minstrel-split-rom roms/rom_dump_hex.h roms/
+Usage (from tools/): ojb-split-rom roms/rom_dump_hex.h roms/
 """
 
 from __future__ import annotations

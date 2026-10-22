@@ -221,7 +221,7 @@ def avoid_repeats(words: list[int], min_gap: int) -> tuple[list[int], int, int]:
     """Re-voice strikes that repeat a bell within min_gap frames.
 
     A bell struck again while it is still ringing barely sounds and can choke
-    itself (measured with minstrel-bell-listen). Such a repeat moves
+    itself (measured with ojb-bell-listen). Such a repeat moves
     to the same pitch an octave away, else to a third below or above that is in
     the song's key, as long as that bell is also free; otherwise it is dropped
     and the first strike keeps ringing. Returns (words, moved, dropped).

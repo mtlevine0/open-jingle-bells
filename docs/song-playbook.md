@@ -17,8 +17,8 @@ final judge, so always give the user the WAV.
 | Thing | Value |
 |---|---|
 | Bell board | ESP32-S3 on USB `/dev/ttyACM1`, running `firmware/` (choir-board build) |
-| Check it | `minstrel-play-scale` → `PASS: 23 strikes acknowledged` |
-| If it isn't running minstrel | `cd firmware && arduino-cli compile -u -p /dev/ttyACM1 -b esp32:esp32:esp32s3:CDCOnBoot=cdc,FlashSize=8M,PartitionScheme=default_8MB` |
+| Check it | `ojb-play-scale` → `PASS: 23 strikes acknowledged` |
+| If it isn't running this firmware | `cd firmware && arduino-cli compile -u -p /dev/ttyACM1 -b esp32:esp32:esp32s3:CDCOnBoot=cdc,FlashSize=8M,PartitionScheme=default_8MB` |
 | Other units | Keep the board off Wi-Fi or in its own sync group, or a song started on another unit plays over your test |
 | Microphone | System default input, the Logitech C925e webcam. The Jabra records silence. |
 | Python | numpy is installed; pyserial is not, and the scripts don't need it |
@@ -32,7 +32,7 @@ and their relative minors.
 ## 1. Inspect the MIDI
 
 ```bash
-minstrel-harmonize SONG.MID --analyze
+ojb-harmonize SONG.MID --analyze
 ```
 
 For each track it prints the range, pitch classes, chord count, rhythmic grid,
@@ -55,7 +55,7 @@ No harmony track? Use the melody-only path at the end.
 ## 2. Arrange
 
 ```bash
-minstrel-harmonize SONG.MID \
+ojb-harmonize SONG.MID \
   --melody-track M --harmony-track H --transpose T --intro \
   --output-header tools/songs/<song>_rom.h \
   --output-wav media/compositions/<song>.wav
@@ -87,9 +87,9 @@ The rules it enforces, which you shouldn't undo by hand-editing:
 
 ```bash
 # Calibrate once per session, or whenever the mic or bells move (~25 s):
-minstrel-bell-listen calibrate
+ojb-bell-listen calibrate
 # Play the whole song and score it (runs for the song's length + ~5 s):
-minstrel-bell-listen rom tools/songs/<song>_rom.h
+ojb-bell-listen rom tools/songs/<song>_rom.h
 ```
 
 Run it in the foreground with a long timeout, e.g. 400000 ms for a 2-minute
@@ -114,7 +114,7 @@ Scores vary by about ±4% between calibrations. To compare two arrangements,
 numbers from different sessions:
 
 ```bash
-minstrel-bell-listen rescore media/recordings/<take>.json
+ojb-bell-listen rescore media/recordings/<take>.json
 ```
 
 ## 4. Iterate
@@ -145,7 +145,7 @@ worth melody changes.
 2. To add it to the units' library, copy the header into
    `tools/roms/`, add a row for it to `roms.csv` there
    (`song_title` and `file` are the columns that matter), run
-   `minstrel-build-songs`, and reflash. Only do this if the
+   `ojb-build-songs`, and reflash. Only do this if the
    user asks; every unit must then be reflashed to keep the libraries
    matching.
 3. Add a row to "Results so far" in `composing.md`: the song, its source
@@ -158,7 +158,7 @@ worth melody changes.
 ## Melody only (no usable harmony track)
 
 ```bash
-minstrel-midi-to-bells SONG.MID --track M --voice highest \
+ojb-midi-to-bells SONG.MID --track M --voice highest \
   --transpose T --frames-per-quarter 2 --step-ms <eighth-note ms from --analyze> \
   --avoid-repeats 2 --output-header tools/songs/<song>_rom.h
 ```

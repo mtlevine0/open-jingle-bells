@@ -253,7 +253,7 @@ def main() -> int:
             print(f"Rendered {label} to {output}")
             return 0
 
-        with tempfile.TemporaryDirectory(prefix="merrie-minstrel-") as directory:
+        with tempfile.TemporaryDirectory(prefix="open-jingle-bells-") as directory:
             output = Path(directory) / "preview.wav"
             render_wav(chosen, output, args.step_ms, args.sample_rate, args.gain)
             print(f"Playing {label}")

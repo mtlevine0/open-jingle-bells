@@ -10,7 +10,7 @@ numbers below come from measurements on our own hardware.
 > not ESP-NOW. This document's "broadcast the schedule, not the notes" idea
 > carries over. The ESP-NOW-specific parts (beacons as the clock, relaying,
 > channel scanning, LR rates) don't. The design is in
-> [minstrel-firmware-plan.md](minstrel-firmware-plan.md).
+> [firmware-plan.md](firmware-plan.md).
 
 ## How it works today
 

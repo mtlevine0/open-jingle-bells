@@ -9,7 +9,7 @@ Uses only the Python standard library (Linux/macOS termios). Every command
 must be acknowledged with "OK" by the firmware, so a missing or wrong reply
 fails the run.
 
-    minstrel-play-scale --port /dev/ttyACM1
+    ojb-play-scale --port /dev/ttyACM1
 """
 
 import argparse

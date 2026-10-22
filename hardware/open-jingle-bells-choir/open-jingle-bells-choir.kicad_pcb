@@ -191,7 +191,7 @@
 		(property ki_fp_filters "SOT?23*")
 		(path "/2353f130-4958-4102-862c-8919d8e96452")
 		(sheetname "/")
-		(sheetfile "merrie-minstrel-choir.kicad_sch")
+		(sheetfile "open-jingle-bells-choir.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -533,7 +533,7 @@
 		(property ki_fp_filters "Connector*:*_1x??_*")
 		(path "/cb11d7c0-ec2f-4d10-b4f1-181a8d03838a")
 		(sheetname "/")
-		(sheetfile "merrie-minstrel-choir.kicad_sch")
+		(sheetfile "open-jingle-bells-choir.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -826,7 +826,7 @@
 		(property ki_fp_filters "LED* LED_SMD:* LED_THT:*")
 		(path "/7bc21544-1ed6-4a9d-b149-aee3af569f55")
 		(sheetname "/")
-		(sheetfile "merrie-minstrel-choir.kicad_sch")
+		(sheetfile "open-jingle-bells-choir.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -1027,7 +1027,7 @@
 		(property ki_fp_filters "SOT?223* SOT?89* TO?220* TO?252* TO?263*")
 		(path "/0ab2d065-ffab-4349-881f-5f1d9fa1a35a")
 		(sheetname "/")
-		(sheetfile "merrie-minstrel-choir.kicad_sch")
+		(sheetfile "open-jingle-bells-choir.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -1582,7 +1582,7 @@
 		(property ki_fp_filters "LED* LED_SMD:* LED_THT:*")
 		(path "/90f95d69-800b-4dc5-8872-eb61abba3d96")
 		(sheetname "/")
-		(sheetfile "merrie-minstrel-choir.kicad_sch")
+		(sheetfile "open-jingle-bells-choir.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -1809,7 +1809,7 @@
 		(property ki_fp_filters "SWDIP2_256X170P100")
 		(path "/fc4a4b75-031e-436d-99fd-68afa5cdff19")
 		(sheetname "/")
-		(sheetfile "merrie-minstrel-choir.kicad_sch")
+		(sheetfile "open-jingle-bells-choir.kicad_sch")
 		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
@@ -2067,7 +2067,7 @@
 		(property ki_fp_filters "ESP32-S3-WROOM-1_EXP")
 		(path "/fa159d63-667b-455f-a7da-b6150be1c10d")
 		(sheetname "/")
-		(sheetfile "merrie-minstrel-choir.kicad_sch")
+		(sheetfile "open-jingle-bells-choir.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -3021,7 +3021,7 @@
 		(property ki_fp_filters "SWDIP2_256X170P100")
 		(path "/0b5da9a8-0d0d-4d20-a8cc-ac38a9d2c1d0")
 		(sheetname "/")
-		(sheetfile "merrie-minstrel-choir.kicad_sch")
+		(sheetfile "open-jingle-bells-choir.kicad_sch")
 		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
@@ -3276,7 +3276,7 @@
 		(property ki_fp_filters "12402012E212A_AMP")
 		(path "/92c3b8b4-1a60-4797-bb62-393b4f94ecd9")
 		(sheetname "/")
-		(sheetfile "merrie-minstrel-choir.kicad_sch")
+		(sheetfile "open-jingle-bells-choir.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -3840,7 +3840,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/d3d8825a-7718-41b2-8b10-32449317b3fb")
 		(sheetname "/")
-		(sheetfile "merrie-minstrel-choir.kicad_sch")
+		(sheetfile "open-jingle-bells-choir.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -4040,7 +4040,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/d5a29608-3750-445a-ba9a-d8b7464c73a1")
 		(sheetname "/")
-		(sheetfile "merrie-minstrel-choir.kicad_sch")
+		(sheetfile "open-jingle-bells-choir.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -4249,7 +4249,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/66e9bbaa-df11-4a18-bcf0-9ed0d1675928")
 		(sheetname "/")
-		(sheetfile "merrie-minstrel-choir.kicad_sch")
+		(sheetfile "open-jingle-bells-choir.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -4472,7 +4472,7 @@
 		)
 		(path "/f74b00c5-b20b-47d8-ac72-ab63e47d1496")
 		(sheetname "/")
-		(sheetfile "merrie-minstrel-choir.kicad_sch")
+		(sheetfile "open-jingle-bells-choir.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -5091,7 +5091,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/a3358f5b-3a29-4ab9-bcb4-f5de2bac4d15")
 		(sheetname "/")
-		(sheetfile "merrie-minstrel-choir.kicad_sch")
+		(sheetfile "open-jingle-bells-choir.kicad_sch")
 		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
@@ -5239,7 +5239,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/23864e9e-34de-4284-b857-92fde0e081ad")
 		(sheetname "/")
-		(sheetfile "merrie-minstrel-choir.kicad_sch")
+		(sheetfile "open-jingle-bells-choir.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -5439,7 +5439,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/cfd83c3d-67a2-4e5b-b4d8-fdd6ee21802e")
 		(sheetname "/")
-		(sheetfile "merrie-minstrel-choir.kicad_sch")
+		(sheetfile "open-jingle-bells-choir.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -5636,7 +5636,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/e86186c2-f65a-4861-9c6e-ee704aa174d2")
 		(sheetname "/")
-		(sheetfile "merrie-minstrel-choir.kicad_sch")
+		(sheetfile "open-jingle-bells-choir.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -5787,7 +5787,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/5239ed09-e31e-43c1-b6c6-3d0e01eafb83")
 		(sheetname "/")
-		(sheetfile "merrie-minstrel-choir.kicad_sch")
+		(sheetfile "open-jingle-bells-choir.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -5941,7 +5941,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/7c6f2065-15f3-49fe-ab67-97c5c850c601")
 		(sheetname "/")
-		(sheetfile "merrie-minstrel-choir.kicad_sch")
+		(sheetfile "open-jingle-bells-choir.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -6150,7 +6150,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/118fa60d-1750-4239-82e9-6de123491d64")
 		(sheetname "/")
-		(sheetfile "merrie-minstrel-choir.kicad_sch")
+		(sheetfile "open-jingle-bells-choir.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -6301,7 +6301,7 @@
 		(property ki_fp_filters "R_*")
 		(path "/8638d683-a396-4f36-bc34-7103ddf8c095")
 		(sheetname "/")
-		(sheetfile "merrie-minstrel-choir.kicad_sch")
+		(sheetfile "open-jingle-bells-choir.kicad_sch")
 		(units
 			(unit
 				(name "A")
@@ -6455,7 +6455,7 @@
 		(property ki_fp_filters "C_*")
 		(path "/430b9813-0a0e-4daf-a1db-a6abf181fcf0")
 		(sheetname "/")
-		(sheetfile "merrie-minstrel-choir.kicad_sch")
+		(sheetfile "open-jingle-bells-choir.kicad_sch")
 		(units
 			(unit
 				(name "A")

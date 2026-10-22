@@ -16,7 +16,7 @@ the harmony track's top voice as the melody until the melody track starts.
 --strum-intro instead strikes the harmony's chords in a rhythm pattern there,
 for an intro whose hook is a strummed riff rather than a tune.
 
-    minstrel-harmonize ~/Downloads/FROSTY.MID \\
+    ojb-harmonize ~/Downloads/FROSTY.MID \\
       --melody-track 2 --harmony-track 3 --transpose 24 --intro \\
       --output-header tools/songs/frosty_chords_rom.h
 """

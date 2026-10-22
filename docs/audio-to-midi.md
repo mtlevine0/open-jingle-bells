@@ -5,7 +5,7 @@ How to turn an MP3 (or any recording) into a MIDI file that
 2026-10-20 with Blink-182's "All the Small Things":
 `tools/songs/small_things_mp3_rom.h`.
 
-The script `minstrel-audio-to-midi` does the transcription. Its
+The script `ojb-audio-to-midi` does the transcription. Its
 output has the same shape as a hand-made MIDI: track 1 is the sung melody,
 track 2 holds the chords. From there, the playbook takes over at step 2.
 
@@ -37,7 +37,7 @@ the Demucs model weights.
 Copy the downloaded file into its own directory first, as with any download.
 
 ```bash
-minstrel-audio-to-midi SONG.mp3 \
+ojb-audio-to-midi SONG.mp3 \
   --work media/audio/<song> --output media/audio/<song>/<song>.mid
 ```
 

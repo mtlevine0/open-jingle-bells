@@ -27,7 +27,7 @@ String netApSsid() {
   uint8_t mac[6];
   esp_read_mac(mac, ESP_MAC_WIFI_STA);
   char ssid[20];
-  snprintf(ssid, sizeof(ssid), "Minstrel-%02X%02X", mac[4], mac[5]);
+  snprintf(ssid, sizeof(ssid), "JingleBells-%02X%02X", mac[4], mac[5]);
   return ssid;
 }
 

@@ -6,15 +6,15 @@ PipeWire/PulseAudio (parecord), then detects each strike in the recording,
 identifies which bells rang, and compares that with what was sent.
 
     # once per room/microphone placement: learn each bell's real pitch
-    minstrel-bell-listen calibrate
+    ojb-bell-listen calibrate
     # play and check the ROM intro scale
-    minstrel-bell-listen scale
+    ojb-bell-listen scale
     # play and check a composition (frames from a ROM header)
-    minstrel-bell-listen rom tools/songs/frosty_chords_rom.h --frames 64
+    ojb-bell-listen rom tools/songs/frosty_chords_rom.h --frames 64
     # re-check a saved performance (e.g. after recalibrating)
-    minstrel-bell-listen rescore media/recordings/<take>.json
+    ojb-bell-listen rescore media/recordings/<take>.json
     # list the strikes in any recording
-    minstrel-bell-listen analyze take.wav
+    ojb-bell-listen analyze take.wav
 
 Recordings and JSON reports go to media/recordings/. Needs numpy.
 """

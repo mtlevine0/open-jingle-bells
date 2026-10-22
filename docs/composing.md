@@ -47,23 +47,23 @@ in two octaves.
 
 | Tool | What it does |
 |------|--------------|
-| `minstrel-midi-to-bells` | Converts one MIDI track to a ROM header and a synthesized WAV preview |
-| `minstrel-harmonize` | Arranges a melody track with chords from a harmony track, at the MIDI's own tempo |
-| `minstrel-rom-player` | Analyzes the original ROM dump and renders WAV previews |
+| `ojb-midi-to-bells` | Converts one MIDI track to a ROM header and a synthesized WAV preview |
+| `ojb-harmonize` | Arranges a melody track with chords from a harmony track, at the MIDI's own tempo |
+| `ojb-rom-player` | Analyzes the original ROM dump and renders WAV previews |
 | `firmware/` | Bell firmware: plays its song library, and words from USB serial (`strike 0x200`, `note G6`, `pulse 40`) |
-| `minstrel-play-scale` | Quick USB check: plays the ROM intro scale |
-| `minstrel-bell-listen` | Plays on the real bells, records with a microphone, and reports what was heard |
+| `ojb-play-scale` | Quick USB check: plays the ROM intro scale |
+| `ojb-bell-listen` | Plays on the real bells, records with a microphone, and reports what was heard |
 
 ## Workflow
 
 ### Melody with chords (current approach)
 
 ```bash
-minstrel-harmonize ~/Downloads/FROSTY.MID \
+ojb-harmonize ~/Downloads/FROSTY.MID \
   --melody-track 2 --harmony-track 3 --transpose 24 --intro \
   --output-header tools/songs/frosty_chords_rom.h \
   --output-wav media/compositions/frosty_chords.wav
-minstrel-bell-listen rom tools/songs/frosty_chords_rom.h
+ojb-bell-listen rom tools/songs/frosty_chords_rom.h
 ```
 
 - `--transpose` shifts the whole melody so it lands inside C6–E7. Pick a shift
@@ -92,20 +92,20 @@ How it arranges:
 
 ```bash
 # 1. Find the melody track
-minstrel-midi-to-bells song.mid --list-tracks
+ojb-midi-to-bells song.mid --list-tracks
 
 # 2. Convert it (2 frames per quarter = one eighth note per 200 ms frame)
-minstrel-midi-to-bells song.mid --track 2 --voice highest \
+ojb-midi-to-bells song.mid --track 2 --voice highest \
   --frames-per-quarter 2 --step-ms 200 --trailing-rest-frames 10 \
   --avoid-repeats 2 \
   --output-header tools/songs/song_rom.h \
   --output-wav media/compositions/song.wav
 
 # 3. Calibrate once per room or microphone position (~25 s)
-minstrel-bell-listen calibrate
+ojb-bell-listen calibrate
 
 # 4. Play it on the bells and check it
-minstrel-bell-listen rom tools/songs/song_rom.h --frames 9999
+ojb-bell-listen rom tools/songs/song_rom.h --frames 9999
 ```
 
 Without `--transpose`, the converter moves each note into the bell range one
@@ -243,7 +243,7 @@ arrangement accepts these as audible but blurred.
 
 To play a song on the units, add it to the library: copy the header into
 `tools/roms/`, add a row to `roms.csv`, run
-`minstrel-build-songs` and reflash every unit.
+`ojb-build-songs` and reflash every unit.
 
 ## Ideas to try next
 

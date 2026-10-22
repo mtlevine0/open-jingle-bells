@@ -3,7 +3,7 @@
 #include "clock.h"
 #include "playback.h"
 
-// Group sync over UDP on the LAN (see docs/minstrel-firmware-plan.md).
+// Group sync over UDP on the LAN (see docs/firmware-plan.md).
 //
 // Every unit broadcasts HELLO; the conductor (whoever issued the last command)
 // broadcasts STATE, a song timeline in group time; each unit keeps its clock

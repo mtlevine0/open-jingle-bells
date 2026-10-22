@@ -2,7 +2,7 @@
 # ROM dumps
 **dump**
 *_rom.h
-# Generated from the ROM headers by minstrel-build-songs
+# Generated from the ROM headers by ojb-build-songs
 firmware/songs.h
 
 ### Media: source audio/MIDI, renders, recordings
@@ -39,6 +39,8 @@ fp-info-cache
 # Autorouter files (exported from Pcbnew)
 *.dsn
 *.ses
+*.freerouting.log
+hardware/*/route/*.log
 
 # Exported BOM files
 *.xml

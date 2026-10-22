@@ -3,7 +3,7 @@
 
 // Wi-Fi state machine.
 //
-//   SETUP       no credentials: open AP "Minstrel-XXXX" with a captive portal
+//   SETUP       no credentials: open AP "JingleBells-XXXX" with a captive portal
 //   CONNECTING  joining the saved network (20 s)
 //   CONNECTED   on the network; AP off, mDNS <name>.local
 //   FALLBACK    joining failed: setup AP back up, STA retried while no phone

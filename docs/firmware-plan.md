@@ -1,4 +1,4 @@
-# Minstrel firmware plan
+# Firmware plan
 
 Plan for the bell-unit firmware in `firmware/`, started 2026-10-21.
 Every unit carries the song library, joins the same Wi-Fi network and plays in
@@ -41,18 +41,18 @@ reasons:
 
 | Area | State | Where |
 |------|-------|-------|
-| Song table generator | Done. 26 module-801 songs from `roms.csv`, 8,349 frames, library CRC `49D40789` | `minstrel-build-songs` → `firmware/songs.h` |
+| Song table generator | Done. 26 module-801 songs from `roms.csv`, 8,349 frames, library CRC `49D40789` | `ojb-build-songs` → `firmware/songs.h` |
 | Strike engine | Done. A mutex-guarded bus write; an `esp_timer` ends the pulse | `bells.cpp` |
 | Playback scheduler | Done. Its own task on core 1 at priority 5: sleep, then spin to the µs. Late-strike counter and worst lateness. Skips to the due frame if more than 50 ms behind (a mid-song join; not counted as late). Modes: once, repeat, play all (1.5 s gap). `playbackRetime()` and `playbackStopAt()` for sync | `playback.cpp` |
 | Settings in NVS | Done. Name, Wi-Fi credentials, strike length, setup AP channel, sync group, strike offset | `config.cpp` |
-| Wi-Fi | Done. Setup AP `Minstrel-XXXX` with captive DNS, 20 s join timeout, fallback AP that retries every 30 s only when no phone is connected, AP kept 30 s after joining, mDNS `<name>.local`, power save off, 19.5 dBm | `net.cpp` |
+| Wi-Fi | Done. Setup AP `JingleBells-XXXX` with captive DNS, 20 s join timeout, fallback AP that retries every 30 s only when no phone is connected, AP kept 30 s after joining, mDNS `<name>.local`, power save off, 19.5 dBm | `net.cpp` |
 | Group clock | Written. Group time = local + offset; minimum-RTT filter over 16 samples; slews at 0.5 ms/s once synced, steps while converging or past 20 ms | `clock.cpp` |
 | UDP sync | Written. HELLO/STATE broadcasts and unicast TIME on port 47800 through `AsyncUDP`; peer table; clock-master and conductor election; reconcile of the group timeline onto local playback; `drop` for testing | `sync.cpp` |
 | Control page | Done. Tabs: Play (with a group sync line), Bells, Health (group card with a row per unit), Setup (Wi-Fi, name, strike length, AP channel, group, strike offset). Light/dark, works at phone width, ~16 KB | `web_ui.h` |
 | JSON API | Done. `/api/status` has a `sync` block with peers. See "Endpoints" | `web.cpp` |
 | USB serial | Done. Adds `sync` and `drop <pct>` | `console.cpp` |
 | Button and LED | Done. S1 short press toggles play/stop for the group; a 5 s hold forgets Wi-Fi | `firmware.ino` |
-| Laptop monitor | Written. Decodes HELLO/STATE; `--time` probes the clock master. Packet layouts checked against the firmware's structs (14/90/46/42 bytes) | `minstrel-sync-monitor` |
+| Laptop monitor | Written. Decodes HELLO/STATE; `--time` probes the clock master. Packet layouts checked against the firmware's structs (14/90/46/42 bytes) | `ojb-sync-monitor` |
 
 ### Checked on hardware
 
@@ -66,7 +66,7 @@ reasons:
   - Cause: a stale build. The player-board variant (`-DPLAYER_BOARD`) was the
     last one compiled, and a bare `arduino-cli upload` flashes the last build.
   - Fix: flash with `arduino-cli compile -u -p <port> ...` in one step, and
-    check that Health shows "Board: merrie-minstrel-choir".
+    check that Health shows "Board: open-jingle-bells-choir".
 
 ### Not yet checked on hardware
 
@@ -107,7 +107,7 @@ reasons:
 
 ## Decisions
 
-- **Board.** The target is the **merrie-minstrel-choir** board (rev 1): bell
+- **Board.** The target is the **open-jingle-bells-choir** board (rev 1): bell
   GPIOs as in `board.h`'s choir map, LED on IO35, S1 (GPIO0/BOOT) as the
   user button (active low after boot), native USB. The player board stays a
   build flag (`PLAYER_BOARD`) but isn't tested in this plan.
@@ -175,7 +175,7 @@ for tens of ms. So:
 
 ## Song table
 
-`minstrel-build-songs` reads a manifest CSV, by default
+`ojb-build-songs` reads a manifest CSV, by default
 `tools/roms/roms.csv`. It uses the `song_title` and `file`
 columns, keeps the row order as the song ids, and checks each song's frame
 count against the `frames` column. The script writes
@@ -305,7 +305,7 @@ offset correction = ((t2 - t1) + (t3 - t4)) / 2
 The state machine in `net.cpp` is built:
 
 1. **Unconfigured,** meaning NVS holds no credentials. Start the open AP
-   `Minstrel-XXXX` with a captive portal at 192.168.4.1. The setup page scans
+   `JingleBells-XXXX` with a captive portal at 192.168.4.1. The setup page scans
    networks and saves the credentials to NVS.
 2. **Connecting.** STA only, with a 20 s timeout. On failure, the setup AP
    comes back and the unit retries every 30 s while no phone is on the AP.

@@ -1,4 +1,4 @@
-# merrie-minstrel-player — TODO before ordering
+# open-jingle-bells-player — TODO before ordering
 
 Status: schematic done, board placed and fully routed (32.5 × 60 mm, 2-layer, OSH Park rules).
 DRC reports 0 unconnected items.
@@ -25,7 +25,7 @@ DRC reports 0 unconnected items.
 - J1 (USB-C, vendor footprint) pads sit 0.17–0.20 mm from its own NPTH holes (4 errors). Inherent to the footprint.
 - Starved thermal on C10 pad 2 (GND, F.Cu pour): one spoke instead of two. The pad is already connected by a track.
 - U1 footprint differs slightly from the KiCad 10 library copy (warning only).
-- U2 (AZ1117, vendor `SOT-223_DIO` footprint): the tab pad 4 is unconnected, same as on merrie-minstrel-choir.
+- U2 (AZ1117, vendor `SOT-223_DIO` footprint): the tab pad 4 is unconnected, same as on open-jingle-bells-choir.
 - Silk edge clearance (5 warnings) comes from footprint artwork. The U1 antenna outline and J1 USB-C shell outline
   overhang the edge by design, and U2's pin-1 dot sits at x = 99.95. The fab clips silk at the board edge.
 - Schematic parity: 50 `footprint_symbol_field_mismatch` warnings, all for the 'Description' field (empty on the PCB).

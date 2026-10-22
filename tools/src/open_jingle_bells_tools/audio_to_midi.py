@@ -19,7 +19,7 @@ Needs the venv in docs/audio-to-midi.md (demucs, librosa, basic-pitch on
 onnxruntime). Stems and analysis are cached in --work, so later runs only
 redo steps 3 and 4.
 
-    minstrel-audio-to-midi SONG.mp3 \\
+    ojb-audio-to-midi SONG.mp3 \\
       --output media/audio/song.mid
 """
 

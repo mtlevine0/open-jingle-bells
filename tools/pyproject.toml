@@ -3,9 +3,9 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "minstrel-tools"
+name = "open-jingle-bells-tools"
 version = "0.1.0"
-description = "Song, bell and sync tools for the merrie minstrel choir"
+description = "Song, bell and sync tools for Open Jingle Bells"
 readme = "README.md"
 requires-python = ">=3.10"
 # The core tools (ROM analysis, MIDI conversion, the song table builder, the
@@ -13,9 +13,9 @@ requires-python = ">=3.10"
 dependencies = []
 
 [project.optional-dependencies]
-# minstrel-bell-listen: records the bells and scores what it hears.
+# ojb-bell-listen: records the bells and scores what it hears.
 bells = ["numpy>=1.24"]
-# minstrel-audio-to-midi: stem separation and transcription. Needs Python
+# ojb-audio-to-midi: stem separation and transcription. Needs Python
 # 3.12 (PyTorch wheels) and ffmpeg on PATH. basic-pitch itself isn't listed:
 # it pins TensorFlow < 2.15.1, which has no 3.12 wheels, so install it
 # separately with `pip install --no-deps basic-pitch==0.4.0`. The rest of its
@@ -33,18 +33,18 @@ audio = [
     "resampy>=0.2.2",
     "scikit-learn",
 ]
-all = ["minstrel-tools[bells,audio]"]
+all = ["open-jingle-bells-tools[bells,audio]"]
 
 [project.scripts]
-minstrel-build-songs = "minstrel_tools.build_songs:main"
-minstrel-sync-monitor = "minstrel_tools.sync_monitor:main"
-minstrel-play-scale = "minstrel_tools.play_scale:main"
-minstrel-bell-listen = "minstrel_tools.bell_listen:main"
-minstrel-rom-player = "minstrel_tools.rom_player:main"
-minstrel-split-rom = "minstrel_tools.split_rom:main"
-minstrel-midi-to-bells = "minstrel_tools.midi_to_bells:main"
-minstrel-harmonize = "minstrel_tools.harmonize:main"
-minstrel-audio-to-midi = "minstrel_tools.audio_to_midi:main"
+ojb-build-songs = "open_jingle_bells_tools.build_songs:main"
+ojb-sync-monitor = "open_jingle_bells_tools.sync_monitor:main"
+ojb-play-scale = "open_jingle_bells_tools.play_scale:main"
+ojb-bell-listen = "open_jingle_bells_tools.bell_listen:main"
+ojb-rom-player = "open_jingle_bells_tools.rom_player:main"
+ojb-split-rom = "open_jingle_bells_tools.split_rom:main"
+ojb-midi-to-bells = "open_jingle_bells_tools.midi_to_bells:main"
+ojb-harmonize = "open_jingle_bells_tools.harmonize:main"
+ojb-audio-to-midi = "open_jingle_bells_tools.audio_to_midi:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
