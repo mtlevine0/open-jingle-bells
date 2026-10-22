@@ -66,7 +66,7 @@ reasons:
   - Cause: a stale build. The player-board variant (`-DPLAYER_BOARD`) was the
     last one compiled, and a bare `arduino-cli upload` flashes the last build.
   - Fix: flash with `arduino-cli compile -u -p <port> ...` in one step, and
-    check that Health shows "Board: open-jingle-bells-choir".
+    check that Health shows "Board: open-jingle-bells-module".
 
 ### Not yet checked on hardware
 
@@ -107,7 +107,7 @@ reasons:
 
 ## Decisions
 
-- **Board.** The target is the **open-jingle-bells-choir** board (rev 1): bell
+- **Board.** The target is the **open-jingle-bells-module** board (rev 1): bell
   GPIOs as in `board.h`'s choir map, LED on IO35, S1 (GPIO0/BOOT) as the
   user button (active low after boot), native USB. The player board stays a
   build flag (`PLAYER_BOARD`) but isn't tested in this plan.

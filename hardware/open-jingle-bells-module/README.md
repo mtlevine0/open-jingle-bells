@@ -1,4 +1,4 @@
-# open-jingle-bells-choir
+# open-jingle-bells-module
 
 ESP32-S3 receiver board that plugs onto the bell unit's card edge (J2, EDAC 395-024-559-212).
 

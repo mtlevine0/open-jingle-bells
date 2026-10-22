@@ -2,7 +2,7 @@
 
 // Pin maps. Words use the ROM bit order: bit i drives DATA_PINS[i].
 //
-// The default is the open-jingle-bells-choir board, where S1 (GPIO0, BOOT)
+// The default is the open-jingle-bells-module board, where S1 (GPIO0, BOOT)
 // doubles as the user button after boot. Define PLAYER_BOARD for the
 // open-jingle-bells-player board, whose bell lines go through TXS0108E
 // translators to the same edge pins.
@@ -16,7 +16,7 @@ static const int BUTTON_PIN = 42;  // PLAY
 static const int LVL_OE_PIN = 4;
 static const int MOD_PWR_EN_PIN = 40;
 #else
-static const char BOARD_NAME[] = "open-jingle-bells-choir";
+static const char BOARD_NAME[] = "open-jingle-bells-module";
 static const int DATA_PINS[12] = {
   4, 6, 15, 18, 3, 9, 46, 8, 17, 16, 7, 5
 };

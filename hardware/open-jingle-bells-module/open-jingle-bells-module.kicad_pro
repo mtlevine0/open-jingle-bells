@@ -575,7 +575,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "open-jingle-bells-choir.kicad_pro",
+    "filename": "open-jingle-bells-module.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -615,7 +615,7 @@
       "plot": "/Users/matt/Desktop/",
       "pos_files": "",
       "specctra_dsn": "",
-      "step": "open-jingle-bells-choir.stl",
+      "step": "open-jingle-bells-module.stl",
       "svg": "",
       "vrml": ""
     },
@@ -790,8 +790,8 @@
     "subpart_id_separator": 0,
     "top_level_sheets": [
       {
-        "filename": "open-jingle-bells-choir.kicad_sch",
-        "name": "open-jingle-bells-choir",
+        "filename": "open-jingle-bells-module.kicad_sch",
+        "name": "open-jingle-bells-module",
         "uuid": "d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5"
       }
     ],
@@ -801,7 +801,7 @@
   "sheets": [
     [
       "d0ea3e1f-ff66-4cfd-8c97-e4eb660b9ac5",
-      "open-jingle-bells-choir"
+      "open-jingle-bells-module"
     ]
   ],
   "text_variables": {},

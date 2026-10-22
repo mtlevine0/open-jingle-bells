@@ -18,7 +18,7 @@ I used [OSH Park](https://oshpark.com) to manufacture the PCBs.
 ├── firmware/           # Bell-unit firmware (Arduino sketch): Wi-Fi control page, songs, UDP group sync
 │   └── rom-dumper/     # Firmware for dumping ROM contents over a serial connection
 ├── hardware/
-│   └── open-jingle-bells-choir/   # KiCad project: bell-unit board
+│   └── open-jingle-bells-module/  # KiCad project: bell-unit board
 ├── tools/              # Python package: song library (roms/), new songs (songs/), song and bell tools, sync monitor
 └── docs/
 ```
