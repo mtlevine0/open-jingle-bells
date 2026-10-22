@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """Play the ROM intro scale on the bells through the player's USB serial port.
 
-The scale is read from transmitter/rom_dump_hex.h, so the player strikes
-exactly the words the working transmitter sends: the intro's twelve
+The scale is read from roms/rom_dump_hex.h, so the unit strikes exactly the
+words the original ROM plays: the intro's twelve
 single-bell frames from high to low, then the same bells from low to high.
 
 Uses only the Python standard library (Linux/macOS termios). Every command
 must be acknowledged with "OK" by the firmware, so a missing or wrong reply
 fails the run.
 
-    python firmware/player/play_scale.py --port /dev/ttyACM1
+    minstrel-play-scale --port /dev/ttyACM1
 """
 
 import argparse
@@ -21,8 +21,10 @@ import termios
 import time
 from pathlib import Path
 
-ROM = Path(__file__).resolve().parent.parent / "transmitter" / "rom_dump_hex.h"
-STEP_MS = 200  # transmitter frame interval
+from .paths import ROM_DUMP
+
+ROM = ROM_DUMP
+STEP_MS = 200  # original ROM frame interval
 
 
 def rom_scale(path):
@@ -69,6 +71,9 @@ class Player:
         return line.decode(errors="replace").strip()
 
     def drain(self):
+        # End any partial line the board holds (e.g. its own output echoed
+        # back before the port went raw), then discard the replies.
+        os.write(self.fd, b"\n")
         while self.readline(0.2) is not None:
             pass
         self.buffer = b""

@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "minstrel-tools"
+version = "0.1.0"
+description = "Song, bell and sync tools for the merrie minstrel choir"
+readme = "README.md"
+requires-python = ">=3.10"
+# The core tools (ROM analysis, MIDI conversion, the song table builder, the
+# sync monitor and the serial scale check) use only the standard library.
+dependencies = []
+
+[project.optional-dependencies]
+# minstrel-bell-listen: records the bells and scores what it hears.
+bells = ["numpy>=1.24"]
+# minstrel-audio-to-midi: stem separation and transcription. Needs Python
+# 3.12 (PyTorch wheels) and ffmpeg on PATH. basic-pitch itself isn't listed:
+# it pins TensorFlow < 2.15.1, which has no 3.12 wheels, so install it
+# separately with `pip install --no-deps basic-pitch==0.4.0`. The rest of its
+# runtime (ONNX model) is below.
+audio = [
+    "numpy>=1.24",
+    "scipy>=1.4.1",
+    "librosa>=0.10",
+    "soundfile>=0.12",
+    "torch>=2.0",
+    "demucs>=4.0",
+    "onnxruntime",
+    "pretty-midi>=0.2.9",
+    "mir-eval>=0.6",
+    "resampy>=0.2.2",
+    "scikit-learn",
+]
+all = ["minstrel-tools[bells,audio]"]
+
+[project.scripts]
+minstrel-build-songs = "minstrel_tools.build_songs:main"
+minstrel-sync-monitor = "minstrel_tools.sync_monitor:main"
+minstrel-play-scale = "minstrel_tools.play_scale:main"
+minstrel-bell-listen = "minstrel_tools.bell_listen:main"
+minstrel-rom-player = "minstrel_tools.rom_player:main"
+minstrel-split-rom = "minstrel_tools.split_rom:main"
+minstrel-midi-to-bells = "minstrel_tools.midi_to_bells:main"
+minstrel-harmonize = "minstrel_tools.harmonize:main"
+minstrel-audio-to-midi = "minstrel_tools.audio_to_midi:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
