@@ -1,5 +1,6 @@
 #pragma once
 #include <stdint.h>
+#include "library.h"
 
 // Playback scheduler. A task pinned to core 1, above loop()'s priority,
 // strikes each frame at startUs + frame * stepMs on esp_timer time, so web
@@ -27,8 +28,9 @@ static const int64_t LATE_US = 2000;
 static const int64_t SONG_GAP_US = 1500000;
 
 void playbackBegin();
-// Starts song at local time startUs (0 = after a short lead-in).
-bool playbackPlay(int song, int64_t startUs = 0);
+// Starts song at local time startUs (0 = after a short lead-in), striking from
+// firstFrame on.
+bool playbackPlay(int song, int64_t startUs = 0, int32_t firstFrame = 0);
 void playbackStop();
 // Stop at local time stopUs; frames due from then on are not struck.
 void playbackStopAt(int64_t stopUs);
@@ -38,13 +40,6 @@ void playbackRetime(int64_t deltaUs);
 void playbackNext();
 void playbackSetMode(PlayMode mode);
 PlaybackStatus playbackStatus();
-
-// The compiled-in song library (songs.h, built by firmware/tools/build_songs.py).
-int songCount();
-const char *songName(int song);
-uint16_t songStepMs(int song);
-uint16_t songFrameCount(int song);
-uint32_t songLibraryCrc();
 
 const char *playModeName(PlayMode mode);
 bool playModeParse(const char *name, PlayMode *mode);

@@ -1,6 +1,5 @@
 #include "playback.h"
 #include "bells.h"
-#include "songs.h"
 #include <Arduino.h>
 #include <esp_timer.h>
 #include <strings.h>
@@ -24,18 +23,18 @@ static uint32_t lateStrikes = 0;
 static int32_t maxLateUs = 0;
 
 static int64_t frameTime(int s, int64_t start, int32_t frame) {
-  return start + (int64_t)frame * SONGS[s].stepMs * 1000;
+  return start + (int64_t)frame * songStepMs(s) * 1000;
 }
 
 // Called with mux held: the song ended, pick what plays next.
 static void advanceLocked() {
-  int64_t endUs = frameTime(song, startUs, SONGS[song].count);
+  int64_t endUs = frameTime(song, startUs, songFrameCount(song));
   if (mode == MODE_SINGLE) {
     playing = false;
     return;
   }
   if (mode == MODE_PLAY_ALL) {
-    song = (song + 1) % SONG_COUNT;
+    song = (song + 1) % songCount();
   }
   startUs = endUs + SONG_GAP_US;
   nextFrame = 0;
@@ -44,7 +43,7 @@ static void advanceLocked() {
 static void schedulerTask(void *) {
   for (;;) {
     portENTER_CRITICAL(&mux);
-    if (playing && nextFrame >= SONGS[song].count) {
+    if (playing && nextFrame >= songFrameCount(song)) {
       advanceLocked();
     }
     if (playing && frameTime(song, startUs, nextFrame) >= stopAtUs) {
@@ -69,7 +68,7 @@ static void schedulerTask(void *) {
       // due now instead of firing a burst of stale strikes.
       portENTER_CRITICAL(&mux);
       if (gen == generation) {
-        int64_t stepUs = (int64_t)SONGS[s].stepMs * 1000;
+        int64_t stepUs = (int64_t)songStepMs(s) * 1000;
         nextFrame = (esp_timer_get_time() - startUs) / stepUs + 1;
       }
       portEXIT_CRITICAL(&mux);
@@ -84,8 +83,11 @@ static void schedulerTask(void *) {
     }
     int64_t late = esp_timer_get_time() - due;
 
+    // Read the word under the lock: a composer edit or delete may swap the
+    // song's frames as soon as we let go.
     portENTER_CRITICAL(&mux);
     bool current = gen == generation;
+    uint16_t word = current ? songFrame(s, frame) : 0;
     if (current) {
       nextFrame = frame + 1;
       if (late > LATE_US) {
@@ -97,7 +99,7 @@ static void schedulerTask(void *) {
     }
     portEXIT_CRITICAL(&mux);
     if (current) {
-      bellsStrike(SONGS[s].frames[frame]);
+      bellsStrike(word);
     }
   }
 }
@@ -111,8 +113,8 @@ static void wake() {
   xTaskNotifyGive(task);
 }
 
-bool playbackPlay(int s, int64_t start) {
-  if (s < 0 || s >= SONG_COUNT) {
+bool playbackPlay(int s, int64_t start, int32_t firstFrame) {
+  if (s < 0 || s >= songCount()) {
     return false;
   }
   if (start == 0) {
@@ -122,7 +124,7 @@ bool playbackPlay(int s, int64_t start) {
   song = s;
   startUs = start;
   stopAtUs = INT64_MAX;
-  nextFrame = 0;
+  nextFrame = max<int32_t>(0, firstFrame);
   playing = true;
   generation++;
   portEXIT_CRITICAL(&mux);
@@ -167,7 +169,7 @@ void playbackRetime(int64_t deltaUs) {
 
 void playbackNext() {
   portENTER_CRITICAL(&mux);
-  int s = (song + 1) % SONG_COUNT;
+  int s = (song + 1) % songCount();
   portEXIT_CRITICAL(&mux);
   playbackPlay(s);
 }
@@ -189,32 +191,12 @@ PlaybackStatus playbackStatus() {
   st.startUs = startUs;
   st.stopAtUs = stopAtUs;
   if (playing && now < startUs) {
-    st.frame = -(int32_t)((startUs - now) / (SONGS[song].stepMs * 1000) + 1);
+    st.frame = -(int32_t)((startUs - now) / (songStepMs(song) * 1000) + 1);
   }
   st.lateStrikes = lateStrikes;
   st.maxLateUs = maxLateUs;
   portEXIT_CRITICAL(&mux);
   return st;
-}
-
-int songCount() {
-  return SONG_COUNT;
-}
-
-const char *songName(int s) {
-  return SONGS[s].name;
-}
-
-uint16_t songStepMs(int s) {
-  return SONGS[s].stepMs;
-}
-
-uint16_t songFrameCount(int s) {
-  return SONGS[s].count;
-}
-
-uint32_t songLibraryCrc() {
-  return LIBRARY_CRC;
 }
 
 static const char *const MODE_NAMES[] = {"single", "loop", "all"};

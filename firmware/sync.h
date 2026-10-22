@@ -15,7 +15,7 @@ void syncService();  // from loop()
 
 // Commands from the page, console or button. Return NULL on success or an
 // error message.
-const char *syncPlay(int song);  // -1: the current song
+const char *syncPlay(int song, int32_t fromFrame = 0);  // song -1: the current song
 const char *syncStop();
 const char *syncNext();
 const char *syncToggle();

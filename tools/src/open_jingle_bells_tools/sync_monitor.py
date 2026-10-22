@@ -23,12 +23,12 @@ import time
 
 PORT = 47800
 MAGIC = 0x54534E4D
-PROTOCOL = 1
+PROTOCOL = 2  # 2: STATE names composed songs
 HELLO, STATE, TIME_REQ, TIME_RESP = 1, 2, 3, 4
 
 HEADER = struct.Struct("<IBBBB6s")
 HELLO_BODY = struct.Struct("<24s24sIIIBBBbiiI")
-STATE_BODY = struct.Struct("<IIIBBBBqq")
+STATE_BODY = struct.Struct("<IIIBBBBqqIIHH")
 TIME_BODY = struct.Struct("<Iqqq")
 MODES = {0: "once", 1: "repeat", 2: "play-all"}
 
@@ -60,9 +60,11 @@ def decode(data):
                    synced=bool(synced), playing=bool(playing), song=song, rssi=rssi,
                    rtt=rtt, jitter=jitter, late=late)
     elif kind == STATE and len(body) >= STATE_BODY.size:
-        epoch, seq, crc, playing, song, mode, _, start, stop = STATE_BODY.unpack_from(body)
+        (epoch, seq, crc, playing, song, mode, _, start, stop, song_id, song_crc, first,
+         _) = STATE_BODY.unpack_from(body)
         out.update(epoch=epoch, seq=seq, crc=crc, playing=bool(playing), song=song,
-                   mode=MODES.get(mode, str(mode)), start=start, stop=stop)
+                   mode=MODES.get(mode, str(mode)), start=start, stop=stop, song_id=song_id,
+                   song_crc=song_crc, first=first)
     elif kind in (TIME_REQ, TIME_RESP) and len(body) >= TIME_BODY.size:
         seq, t1, t2, t3 = TIME_BODY.unpack_from(body)
         out.update(seq=seq, t1=t1, t2=t2, t3=t3)
@@ -114,7 +116,11 @@ def monitor(args):
                     if last_state.get(pkt["mac"]) != key:
                         last_state[pkt["mac"]] = key
                         who = names.get(pkt["mac"], pkt["mac"])
-                        what = (f"PLAY song {pkt['song']} ({pkt['mode']}) at group {pkt['start'] / 1e6:.3f} s"
+                        song = (f"composed {pkt['song_id']:08x}/{pkt['song_crc']:08X}" if pkt["song_id"]
+                                else f"song {pkt['song']}")
+                        if pkt["first"]:
+                            song += f" from frame {pkt['first']}"
+                        what = (f"PLAY {song} ({pkt['mode']}) at group {pkt['start'] / 1e6:.3f} s"
                                 if pkt["playing"] else f"STOP at group {pkt['stop'] / 1e6:.3f} s")
                         print(f"{stamp} STATE from {who}: epoch {pkt['epoch']} seq {pkt['seq']} "
                               f"lib {pkt['crc']:08X} {what}")

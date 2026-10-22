@@ -31,6 +31,7 @@ section{display:none}section.on{display:block}
 button.b{border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-weight:600;padding:10px 16px;border-radius:10px;cursor:pointer;flex:1}
 button.b.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 button.b:active{transform:scale(.98)}
+a.b{display:block;text-align:center;text-decoration:none;border:1px solid var(--line);background:var(--card);color:var(--ink);font-weight:600;padding:10px 16px;border-radius:10px;flex:1}
 .seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:12px}
 .seg button{flex:1;border:0;background:none;color:var(--muted);font:inherit;padding:8px 0;cursor:pointer}
 .seg button.on{background:var(--line);color:var(--ink);font-weight:600}
@@ -78,7 +79,7 @@ li.net span:last-child{color:var(--muted);font-size:13px}
 <div class="row"><button class="b primary" id="playstop">Play</button><button class="b" id="next">Next</button></div>
 <div class="seg" id="mode"><button data-mode="single">Once</button><button data-mode="loop">Repeat</button><button data-mode="all">Play all</button></div>
 </div>
-<div class="card"><h2>Songs</h2><ul id="songs"></ul></div>
+<div class="card"><h2>Songs</h2><ul id="songs"></ul><div class="row"><a class="b" href="/compose">Compose a song</a></div></div>
 </section>
 <section id="bells">
 <div class="card"><h2>Bell test</h2><div class="bells" id="bellgrid"></div><p class="note">Tap a bell to strike it on this unit only.</p></div>
@@ -183,7 +184,7 @@ function renderSync(y,d,p){
 async function poll(){const j=await api("/api/status");if(j){st=j;render()}setTimeout(poll,1000)}
 async function loadSongs(){
   songs=await api("/api/songs")||[];
-  $("#songs").innerHTML=songs.map(s=>`<li class="song" data-id="${s.id}"><span>${esc(s.name)}</span><span>${dur(s.frames,s.step_ms)}</span></li>`).join("");
+  $("#songs").innerHTML=songs.map(s=>`<li class="song" data-id="${s.id}"><span>${esc(s.name)}${s.user?'<span class="tag">composed</span>':""}</span><span>${dur(s.frames,s.step_ms)}</span></li>`).join("");
   document.querySelectorAll("li.song").forEach(li=>li.onclick=()=>api("/api/play",{song:li.dataset.id}).then(poll1));
 }
 async function poll1(){const j=await api("/api/status");if(j){st=j;render()}}

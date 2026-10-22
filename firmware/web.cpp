@@ -1,14 +1,18 @@
 #include "web.h"
 #include "bells.h"
 #include "board.h"
+#include "composer_ui.h"
 #include "config.h"
 #include "json.h"
+#include "library.h"
 #include "net.h"
 #include "playback.h"
 #include "sync.h"
 #include "version.h"
 #include "web_ui.h"
+#include <LittleFS.h>
 #include <WebServer.h>
+#include <uri/UriBraces.h>
 #include <WiFi.h>
 #include <esp_system.h>
 
@@ -149,6 +153,14 @@ static void handleStatus() {
   sendJson(j);
 }
 
+static void sendResult(const char *err);
+
+static String uidJson(uint32_t id) {
+  char buf[12];
+  snprintf(buf, sizeof(buf), "\"%08lx\"", (unsigned long)id);
+  return buf;
+}
+
 static void handleSongs() {
   String j = "[";
   for (int i = 0; i < songCount(); i++) {
@@ -156,10 +168,106 @@ static void handleSongs() {
       j += ',';
     }
     j += "{\"id\":" + String(i) + ",\"name\":" + jsonString(songName(i)) +
-         ",\"frames\":" + String(songFrameCount(i)) + ",\"step_ms\":" + String(songStepMs(i)) + "}";
+         ",\"frames\":" + String(songFrameCount(i)) + ",\"step_ms\":" + String(songStepMs(i));
+    if (songIsUser(i)) {
+      j += ",\"user\":true,\"uid\":" + uidJson(songUserId(i));
+    }
+    j += "}";
   }
   j += "]";
   sendJson(j);
+}
+
+// --- Composed songs: /api/user-songs/<uid>, uid in hex ------------------------
+
+static uint16_t frameBuf[MAX_SONG_FRAMES];
+
+// The uid path argument, or 0 (after replying 404) if no such song.
+static uint32_t userSongArg() {
+  String arg = server.pathArg(0);
+  char *end;
+  uint32_t id = strtoul(arg.c_str(), &end, 16);
+  if (arg.isEmpty() || *end || songFindUser(id) < 0) {
+    sendError(404, "unknown song");
+    return 0;
+  }
+  return id;
+}
+
+static void handleUserSongGet() {
+  uint32_t id = userSongArg();
+  if (!id) {
+    return;
+  }
+  int s = songFindUser(id);
+  uint16_t n = songFrameCount(s);
+  String j;
+  j.reserve(80 + n * 5);
+  j += "{\"uid\":" + uidJson(id) + ",\"song\":" + String(s) + ",\"name\":" + jsonString(songName(s));
+  j += ",\"step_ms\":" + String(songStepMs(s)) + ",\"frames\":[";
+  for (uint16_t i = 0; i < n; i++) {
+    if (i) {
+      j += ',';
+    }
+    j += songFrame(s, i);
+  }
+  j += "]}";
+  sendJson(j);
+}
+
+// The song file as stored, for peers that need it to play along.
+static void handleUserSongRaw() {
+  uint32_t id = userSongArg();
+  if (!id) {
+    return;
+  }
+  File f = LittleFS.open(songUserPath(id));
+  if (!f) {
+    sendError(500, "couldn't read the song");
+    return;
+  }
+  server.streamFile(f, "application/octet-stream");
+  f.close();
+}
+
+// Form fields: name, step_ms, and frames as comma-separated hex ROM words.
+static void saveUserSong(uint32_t id) {
+  const String &list = server.arg("frames");
+  const char *p = list.c_str();
+  int n = 0;
+  while (*p) {
+    char *end;
+    unsigned long w = strtoul(p, &end, 16);
+    if (end == p || n == MAX_SONG_FRAMES || w > 0xFFFF || (*end && *end != ',')) {
+      sendError(400, "frames must be up to 4000 comma-separated hex words");
+      return;
+    }
+    frameBuf[n++] = w;
+    p = *end ? end + 1 : end;
+  }
+  String name = server.arg("name");
+  name.trim();
+  long stepMs = server.arg("step_ms").toInt();
+  const char *err = songSaveUser(&id, name.c_str(), constrain(stepMs, 0, 0xFFFF), frameBuf, n);
+  if (err) {
+    sendError(400, err);
+    return;
+  }
+  sendJson("{\"ok\":true,\"uid\":" + uidJson(id) + ",\"song\":" + String(songFindUser(id)) + "}");
+}
+
+static void handleUserSongUpdate() {
+  uint32_t id = userSongArg();
+  if (id) {
+    saveUserSong(id);
+  }
+}
+
+static void handleUserSongDelete() {
+  uint32_t id = userSongArg();
+  if (id) {
+    sendResult(songDeleteUser(id));
+  }
 }
 
 // Command result: 409 when sync can't take the command right now.
@@ -195,7 +303,7 @@ static void handlePlay() {
   if (modeGiven) {
     playbackSetMode(mode);
   }
-  sendResult(syncPlay(song));
+  sendResult(syncPlay(song, server.hasArg("from") ? server.arg("from").toInt() : 0));
 }
 
 static void handleMode() {
@@ -323,7 +431,13 @@ static void handleNotFound() {
 void webBegin() {
   server.on("/", HTTP_GET, [] { server.send_P(200, "text/html", INDEX_HTML); });
   server.on("/api/status", HTTP_GET, handleStatus);
+  server.on("/compose", HTTP_GET, [] { server.send_P(200, "text/html", COMPOSER_HTML); });
   server.on("/api/songs", HTTP_GET, handleSongs);
+  server.on("/api/user-songs", HTTP_POST, [] { saveUserSong(0); });
+  server.on(UriBraces("/api/user-songs/{}/raw"), HTTP_GET, handleUserSongRaw);
+  server.on(UriBraces("/api/user-songs/{}"), HTTP_GET, handleUserSongGet);
+  server.on(UriBraces("/api/user-songs/{}"), HTTP_POST, handleUserSongUpdate);
+  server.on(UriBraces("/api/user-songs/{}"), HTTP_DELETE, handleUserSongDelete);
   server.on("/api/play", HTTP_POST, handlePlay);
   server.on("/api/stop", HTTP_POST, [] { sendResult(syncStop()); });
   server.on("/api/next", HTTP_POST, [] { sendResult(syncNext()); });

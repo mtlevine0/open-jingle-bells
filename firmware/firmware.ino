@@ -11,6 +11,7 @@
 #include "board.h"
 #include "config.h"
 #include "console.h"
+#include "library.h"
 #include "net.h"
 #include "playback.h"
 #include "sync.h"
@@ -71,6 +72,7 @@ void setup() {
 
   configBegin();
   bellsSetPulseMs(config.pulseMs);
+  libraryBegin();
   playbackBegin();
   netBegin();
   syncBegin();
@@ -83,6 +85,7 @@ void loop() {
   consoleService();
   netService();
   syncService();
+  libraryService();
   webService();
   serviceButton();
   serviceLed();

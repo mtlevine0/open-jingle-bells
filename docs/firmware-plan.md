@@ -52,7 +52,7 @@ reasons:
 | JSON API | Done. `/api/status` has a `sync` block with peers. See "Endpoints" | `web.cpp` |
 | USB serial | Done. Adds `sync` and `drop <pct>` | `console.cpp` |
 | Button and LED | Done. S1 short press toggles play/stop for the group; a 5 s hold forgets Wi-Fi | `firmware.ino` |
-| Laptop monitor | Written. Decodes HELLO/STATE; `--time` probes the clock master. Packet layouts checked against the firmware's structs (14/90/46/42 bytes) | `ojb-sync-monitor` |
+| Laptop monitor | Written. Decodes HELLO/STATE; `--time` probes the clock master. Packet layouts checked against the firmware's structs (14/90/58/42 bytes, protocol 2) | `ojb-sync-monitor` |
 
 ### Checked on hardware
 
@@ -238,7 +238,16 @@ uint8_t  song;
 uint8_t  mode;           // SINGLE, LOOP_SONG, PLAY_ALL
 int64_t  startGroupUs;   // group time of frame 0 of `song`
 int64_t  stopGroupUs;    // group time the stop takes effect (STOPPED only)
+uint32_t songId;         // protocol 2: a composed song, or 0 for compiled-in `song`
+uint32_t songCrc;        // the composed song's contents
+uint16_t firstFrame;     // play from a step: the first frame struck
 ```
+
+- **Composed songs (protocol 2).** STATE names a composed song by `songId`
+  and `songCrc`, since its number differs from unit to unit. A unit that
+  lacks the song, or holds another version, stays silent and fetches
+  `/api/user-songs/<id>/raw` from the conductor in a background task, then
+  joins at the frame that's due. Fetched songs stay in its library.
 
 - **Scheduled changes.** A change is scheduled **1 s ahead** in group time:
   Play starts at `groupNow() + 1 s`, and Stop takes effect at
@@ -340,8 +349,12 @@ Milestone 2 added:
 |--------|-------------------|---------|-------|
 | GET    | `/`               | Control page (opens on Setup when not on Wi-Fi) | yes |
 | GET    | `/api/status`     | This unit, Wi-Fi, playback, sync state with peers, library | yes |
-| GET    | `/api/songs`      | Song list with names, lengths and steps | yes |
-| POST   | `/api/play`       | `song`, `mode`; this unit becomes conductor | yes |
+| GET    | `/api/songs`      | Song list with names, lengths and steps; composed songs add `user` and `uid` | yes |
+| GET    | `/compose`        | The composer page | yes |
+| POST   | `/api/user-songs` | Create a composed song: `name`, `step_ms`, `frames` (comma-separated hex ROM words) | yes |
+| GET/POST/DELETE | `/api/user-songs/<uid>` | Read (JSON, ROM words), update (same fields) or delete one composed song | yes |
+| GET    | `/api/user-songs/<uid>/raw` | The song file, for peers that play along | yes |
+| POST   | `/api/play`       | `song`, `mode`, optional `from` (first frame); this unit becomes conductor | yes |
 | POST   | `/api/stop`       | This unit becomes conductor and stops the group | yes |
 | POST   | `/api/next`       | Play the next song | yes |
 | POST   | `/api/mode`       | `single`, `loop` or `all` | yes |

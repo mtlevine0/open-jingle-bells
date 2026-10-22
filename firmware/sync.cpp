@@ -1,5 +1,6 @@
 #include "sync.h"
 #include "config.h"
+#include "library.h"
 #include "version.h"
 #include <AsyncUDP.h>
 #include <WiFi.h>
@@ -9,7 +10,7 @@
 
 static const uint16_t PORT = 47800;
 static const uint32_t MAGIC = 0x54534E4D;  // "MNST" on the wire
-static const uint8_t PROTOCOL = 1;
+static const uint8_t PROTOCOL = 2;  // 2: STATE names composed songs
 
 static const uint32_t HELLO_MS = 2000;
 static const uint32_t HELLO_JITTER_MS = 200;
@@ -27,6 +28,7 @@ static const int64_t LEAD_GROUP_US = 1000000;     // play, with peers
 static const int64_t LEAD_ALONE_US = 150000;      // play, no peers
 static const int64_t STOP_LEAD_US = 300000;       // stop, with peers
 static const int64_t TIMELINE_TOLERANCE_US = 3000;
+static const int64_t NEW_TIMELINE_US = 500000;      // a start moved this far is a new song
 static const int MAX_PEERS = 16;
 
 enum PacketType : uint8_t { PKT_HELLO = 1, PKT_STATE = 2, PKT_TIME_REQ = 3, PKT_TIME_RESP = 4 };
@@ -67,7 +69,12 @@ struct __attribute__((packed)) StatePacket {
   uint8_t reserved;
   int64_t startGroupUs;
   int64_t stopGroupUs;
+  uint32_t songId;      // composed song, or 0 for compiled-in song number `song`
+  uint32_t songCrc;     // composed song's contents
+  uint16_t firstFrame;  // where the first song starts (play from a step)
+  uint16_t reserved2;
 };
+static_assert(sizeof(StatePacket) == 58, "ojb-sync-monitor decodes 58-byte STATE");
 
 struct __attribute__((packed)) TimePacket {
   Header h;
@@ -98,11 +105,15 @@ struct GroupState {
   uint64_t conductor;
   uint32_t seq;
   bool playing;
-  uint8_t song;
+  uint8_t song;         // conducting: our song number; following: the conductor's
+  uint32_t songId;      // following: the conductor's composed song, or 0
+  uint32_t songCrc;
+  uint16_t firstFrame;
   PlayMode mode;
   int64_t startGroupUs;
   int64_t stopGroupUs;
   uint32_t heardMs;
+  uint32_t conductorIp;
 };
 
 static AsyncUDP udp;
@@ -339,6 +350,16 @@ static bool projectTimeline(uint8_t *song, int64_t *start, PlayMode mode, int64_
   return true;
 }
 
+// The conductor's song as one of ours: -1 while a composed song is missing or
+// out of date here.
+static int localSong() {
+  if (gs.songId == 0) {
+    return gs.song < builtinSongCount() ? gs.song : 0;
+  }
+  int s = songFindUser(gs.songId);
+  return s >= 0 && songCrc(s) == gs.songCrc ? s : -1;
+}
+
 // Bring local playback in line with the group timeline.
 static void reconcile() {
   if (!gs.valid || conducting) {
@@ -358,7 +379,16 @@ static void reconcile() {
     playbackSetMode(gs.mode);
   }
   if (gs.playing) {
-    uint8_t song = gs.song;
+    int resolved = localSong();
+    if (resolved < 0) {
+      // Fetch it from the conductor; the next reconcile after it lands joins in.
+      if (pb.playing) {
+        playbackStop();
+      }
+      songFetch(gs.conductorIp, gs.songId, gs.songCrc);
+      return;
+    }
+    uint8_t song = resolved;
     int64_t start = gs.startGroupUs;
     if (!projectTimeline(&song, &start, gs.mode, clockGroupNow())) {
       return;  // the song ended; playback stopped on its own
@@ -367,7 +397,7 @@ static void reconcile() {
     if (pb.playing && pb.song == song && llabs(pb.startUs - localStart) < TIMELINE_TOLERANCE_US) {
       return;
     }
-    playbackPlay(song, localStart);
+    playbackPlay(song, localStart, start == gs.startGroupUs ? gs.firstFrame : 0);
   } else if (pb.playing) {
     int64_t localStop = localFromGroup(gs.stopGroupUs);
     if (pb.stopAtUs == INT64_MAX || llabs(pb.stopAtUs - localStop) > TIMELINE_TOLERANCE_US) {
@@ -376,7 +406,7 @@ static void reconcile() {
   }
 }
 
-static void handleState(const StatePacket &p) {
+static void handleState(const StatePacket &p, uint32_t ip) {
   uint64_t mac = macToU64(p.h.mac);
   maxEpoch = max(maxEpoch, p.epoch);
   bool newer = p.epoch > gs.epoch || !gs.valid ||
@@ -394,7 +424,11 @@ static void handleState(const StatePacket &p) {
   gs.conductor = mac;
   gs.seq = p.seq;
   gs.playing = p.playing;
-  gs.song = p.song < songCount() ? p.song : 0;
+  gs.song = p.song;
+  gs.songId = p.songId;
+  gs.songCrc = p.songCrc;
+  gs.firstFrame = p.firstFrame;
+  gs.conductorIp = ip;
   gs.mode = p.mode <= MODE_PLAY_ALL ? (PlayMode)p.mode : MODE_SINGLE;
   gs.startGroupUs = p.startGroupUs;
   gs.stopGroupUs = p.stopGroupUs;
@@ -411,11 +445,13 @@ static void refreshConductedState() {
   }
   PlaybackStatus pb = playbackStatus();
   if (pb.playing) {
-    if (pb.song != gs.song) {
+    int64_t start = groupFromLocal(pb.startUs);
+    if (pb.song != gs.song || llabs(start - gs.startGroupUs) > NEW_TIMELINE_US) {
       gs.seq++;
+      gs.firstFrame = 0;  // a repeat or the next song starts from the top
     }
     gs.song = pb.song;
-    gs.startGroupUs = groupFromLocal(pb.startUs);
+    gs.startGroupUs = start;
   } else {
     gs.playing = false;
     gs.stopGroupUs = clockGroupNow();
@@ -435,6 +471,9 @@ static void sendState() {
   p.mode = gs.mode;
   p.startGroupUs = gs.startGroupUs;
   p.stopGroupUs = gs.stopGroupUs;
+  p.songId = songUserId(gs.song);
+  p.songCrc = songCrc(gs.song);
+  p.firstFrame = gs.firstFrame;
   broadcast(&p, sizeof(p));
 }
 
@@ -493,15 +532,18 @@ static void announce() {
   nextStateMs = millis();
 }
 
-const char *syncPlay(int song) {
+const char *syncPlay(int song, int32_t fromFrame) {
   if (song < 0) {
     song = playbackStatus().song;
   }
   if (song >= songCount()) {
     return "unknown song";
   }
+  fromFrame = constrain(fromFrame, 0, max(0, songFrameCount(song) - 1));
+  // Starting from a step: frame 0 falls due that much earlier.
+  int64_t backUs = (int64_t)fromFrame * songStepMs(song) * 1000;
   if (!active) {
-    playbackPlay(song);
+    playbackPlay(song, fromFrame ? esp_timer_get_time() + LEAD_ALONE_US - backUs : 0, fromFrame);
     return NULL;
   }
   const char *err = beginCommand();
@@ -510,10 +552,11 @@ const char *syncPlay(int song) {
   }
   gs.playing = true;
   gs.song = song;
+  gs.firstFrame = fromFrame;
   gs.mode = playbackStatus().mode;
-  gs.startGroupUs = clockGroupNow() + (peerCount ? LEAD_GROUP_US : LEAD_ALONE_US);
+  gs.startGroupUs = clockGroupNow() + (peerCount ? LEAD_GROUP_US : LEAD_ALONE_US) - backUs;
   gs.stopGroupUs = 0;
-  playbackPlay(song, localFromGroup(gs.startGroupUs));
+  playbackPlay(song, localFromGroup(gs.startGroupUs), fromFrame);
   announce();
   return NULL;
 }
@@ -630,7 +673,7 @@ void syncService() {
     } else if (h.type == PKT_STATE) {
       StatePacket p;
       memcpy(&p, item.data, sizeof(p));
-      handleState(p);
+      handleState(p, item.ip);
     }
   }
   expirePeers();
