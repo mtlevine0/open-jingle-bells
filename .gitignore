@@ -1,6 +1,12 @@
 ### Firmware
 # ROM dumps
 **dump**
+*_rom.h
+# Generated from the ROM headers by minstrel-build-songs
+firmware/songs.h
+
+### Media: source audio/MIDI, renders, recordings
+media/
 
 ### Hardware
 ## Kicad
@@ -49,3 +55,9 @@ fp-info-cache
 .DS_store
 # KiCad local history
 .history/
+
+### Python
+.venv-audio/
+__pycache__/
+*.egg-info/
+build/
